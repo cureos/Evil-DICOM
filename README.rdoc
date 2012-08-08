@@ -1,0 +1,25 @@
+= Evil Dicom - A DICOM library in C#
+
+Copyright (c) 2011-2012 Rex Cardan, Metro adaptation (c) 2012 Anders Gustafsson, Cureos AB 
+
+Dual licensed and distributable under the terms of the [GPL 3.0 license](http://opensource.org/licenses/GPL-3.0) and the [RPL 1.5 license](http://opensource.org/licenses/rpl-1.5)
+
+
+== Summary
+
+This is a Metro focused fork of the [main Evil Dicom project](https://github.com/rexcardan/Evil-DICOM).
+
+=== Metro
+
+The Metro class library, project _EvilDicom.Metro_, provides a complete Metro version of the standard _EvilDicom_ class library. To sufficiently apply to regular Metro applications, the following API related modifications have been made:
+
+* File I/O and bitmap image generation are asynchronous
+* To open existing and create new files, an `Windows.Storage.IStorageFile` object should be passed to the I/O method, rather than a file name
+* Return type of bitmap images is `Windows.UI.Xaml.Media.Imaging.BitmapSource`
+
+_Metro.DicomReader_ is a simple Metro application for reading a DICOM file, displaying the XML dump and the image contained in the file.
+
+== Links
+
+* Rex Cardan's [Evil Dicom web site](http://evildicom.rexcardan.com/)
+
