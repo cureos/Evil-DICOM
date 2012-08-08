@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using EvilDicom.Helper;
 using System.IO;
+
+#if NETFX_CORE
+using Console = System.Diagnostics.Debug;
+#endif
 
 namespace EvilDicom.Components
 {
@@ -74,7 +79,7 @@ namespace EvilDicom.Components
             {
                 return Find(new string[] { id })[0];
             }
-            catch(Exception e){
+            catch(Exception){
                 Console.WriteLine("Could not find id {0} in Dicom file", id);
                 return null;
             }
@@ -132,7 +137,6 @@ namespace EvilDicom.Components
         /// <param name="isLittleEndian">A boolean that indicates whether or not the bytes are written in little or big endian.</param>
         public virtual void WriteBytes(BinaryWriter b, bool isLittleEndian)
         {
-            int i = 0;
             foreach (DICOMElement d in collection)
             {
                 int length = d.Length;

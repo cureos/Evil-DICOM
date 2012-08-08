@@ -13,10 +13,10 @@ namespace EvilDicom.Helper
             fixed (byte* H = Haystack) fixed (byte* N = Needle)
             {
                 long i = 0;
-                for (byte* hNext = H, hEnd = H + Haystack.LongLength; hNext < hEnd; i++, hNext++)
+                for (byte* hNext = H, hEnd = H + Haystack.Length; hNext < hEnd; i++, hNext++)
                 {
                     bool Found = true;
-                    for (byte* hInc = hNext, nInc = N, nEnd = N + Needle.LongLength; Found && nInc < nEnd; Found = *nInc == *hInc, nInc++, hInc++) ;
+                    for (byte* hInc = hNext, nInc = N, nEnd = N + Needle.Length; Found && nInc < nEnd; Found = *nInc == *hInc, nInc++, hInc++) ;
                     if (Found) return i;
                 }
                 return -1;
@@ -29,10 +29,10 @@ namespace EvilDicom.Helper
             fixed (byte* H = Haystack) fixed (byte* N = Needle)
             {
                 long i = 0;
-                for (byte* hNext = H, hEnd = H + Haystack.LongLength; hNext < hEnd; i++, hNext++)
+                for (byte* hNext = H, hEnd = H + Haystack.Length; hNext < hEnd; i++, hNext++)
                 {
                     bool Found = true;
-                    for (byte* hInc = hNext, nInc = N, nEnd = N + Needle.LongLength; Found && nInc < nEnd; Found = *nInc == *hInc, nInc++, hInc++) ;
+                    for (byte* hInc = hNext, nInc = N, nEnd = N + Needle.Length; Found && nInc < nEnd; Found = *nInc == *hInc, nInc++, hInc++) ;
                     if (Found) Indexes.Add(i);
                 }
                 return Indexes;

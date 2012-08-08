@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 using EvilDicom.Components;
 using EvilDicom.VR;
+
+#if NETFX_CORE
+using Console = System.Diagnostics.Debug;
+#endif
 
 namespace EvilDicom.Helper
 {
@@ -505,8 +506,8 @@ namespace EvilDicom.Helper
             byte[] vrBytes = new byte[4];
             r.Read(vrBytes, 0, 4);
 
-            System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
-            string possibleVR = enc.GetString(vrBytes).Substring(0, 2);
+            System.Text.UTF8Encoding enc = new System.Text.UTF8Encoding();
+            string possibleVR = enc.GetString(vrBytes, 0, 2);
 
             //Check to see if the dicom object is explicit or implicit vr
             //Start out as implicit and change if neccessary

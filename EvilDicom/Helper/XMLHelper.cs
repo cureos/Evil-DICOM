@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using EvilDicom.Components;
 using System.Xml;
@@ -27,9 +26,29 @@ namespace EvilDicom.Helper
         private static bool INCLUDE_LENGTH = true;
         private static bool INCLUDE_DATA = true;
 
+#if NETFX_CORE
+        public static async void DICOM2XML(DICOMFile df, Windows.Storage.IStorageFile xmlFile)
+        {
+            using (XmlWriter writer = XmlWriter.Create(await xmlFile.OpenStreamForWriteAsync(), GenerateCleanSettings()))
+#else
         public static void DICOM2XML(DICOMFile df, string xmlFilePath)
         {
             using (XmlWriter writer = XmlWriter.Create(xmlFilePath, GenerateCleanSettings()))
+#endif
+            {
+                writer.WriteStartElement(DICOM_FILE_WRAPPER);
+                if (INCLUDE_NUM_OF_OBJECTS_IN_COLLECTIONS)
+                {
+                    writer.WriteAttributeString(NUM_OF_OBJECTS_ATTR_NAME, df.DicomObjects.Count.ToString());
+                }
+                WriteObjects(writer, df.DicomObjects);
+                writer.WriteEndElement();
+            }
+        }
+
+        public static void DICOM2XML(DICOMFile df, StringBuilder stringBuilder)
+        {
+            using (XmlWriter writer = XmlWriter.Create(stringBuilder, GenerateCleanSettings()))
             {
                 writer.WriteStartElement(DICOM_FILE_WRAPPER);
                 if (INCLUDE_NUM_OF_OBJECTS_IN_COLLECTIONS)

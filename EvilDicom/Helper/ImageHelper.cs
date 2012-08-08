@@ -1,15 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using EvilDicom.Image;
 using EvilDicom.Components;
 using EvilDicom.VR;
 using System.IO;
+
+#if NETFX_CORE
+using System.Threading.Tasks;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.UI.Xaml.Media.Imaging;
+using Console = System.Diagnostics.Debug;
+#else
 using System.Drawing;
-using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+#endif
 
 namespace EvilDicom.Helper
 {
@@ -31,7 +35,7 @@ namespace EvilDicom.Helper
                 UnsignedShort rowsObject = df.ROWS as UnsignedShort;
                 props.Rows = rowsObject.Data;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find number of rows");
             }
@@ -42,7 +46,7 @@ namespace EvilDicom.Helper
                 UnsignedShort columnsObject = df.COLUMNS as UnsignedShort;
                 props.Columns = columnsObject.Data;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find number of columns");
             }
@@ -53,7 +57,7 @@ namespace EvilDicom.Helper
                 UnsignedShort bitsAllocated = df.BITS_ALLOCATED as UnsignedShort;
                 props.BitsAllocated = bitsAllocated.Data;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find bits allocated");
             }
@@ -65,7 +69,7 @@ namespace EvilDicom.Helper
                 props.PixelHeight = pixelSpacing.Data[0];
                 props.PixelWidth = pixelSpacing.Data[1];
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find pixel spacing");
             }
@@ -76,7 +80,7 @@ namespace EvilDicom.Helper
                 DecimalString sliceThickness = df.SLICE_THICKNESS as DecimalString;
                 props.SliceThickness = sliceThickness.Data[0];
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find slice thickness");
             }
@@ -87,7 +91,7 @@ namespace EvilDicom.Helper
                 IntegerString imageNumber = df.INSTANCE_NUMBER as IntegerString;
                 props.ImageNumber = imageNumber.Data[0];
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find slice thickness");
             }
@@ -99,7 +103,7 @@ namespace EvilDicom.Helper
                 DecimalString level = df.WINDOW_CENTER as DecimalString;
                 props.WindowAndLevel = new WindowLevel(window.Data[0], level.Data[0]);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find window and level");
             }
@@ -109,7 +113,7 @@ namespace EvilDicom.Helper
                 if (df.DOSE_UNITS.Data != null) { props.IsDose = true; }
                 else { props.IsDose = false; }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not determine if file was a dose file");
             }
@@ -122,7 +126,7 @@ namespace EvilDicom.Helper
                 if (intercept == null) { intercept = new DecimalString(); intercept.Data = new double[] { 0 }; }
                 props.Function = new ScalingFunction(slope.Data[0], intercept.Data[0]);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find scaling function");
             }
@@ -133,7 +137,7 @@ namespace EvilDicom.Helper
                 UnsignedShort samples = df.SAMPLES_PER_PIXEL as UnsignedShort;
                 props.SamplesPerPixel = samples.Data;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find samples per pixel");
             }
@@ -162,7 +166,7 @@ namespace EvilDicom.Helper
                     case Constants.RLE_LOSSLESS: props.TransferSyntax = Constants.TransferSyntax.RLE_LOSSLESS; break;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find transfer syntax");
             }
@@ -173,7 +177,7 @@ namespace EvilDicom.Helper
                 DecimalString imagePosition = df.IMAGE_POSITION as DecimalString;
                 props.ImagePosition = new Position(imagePosition.Data[0], imagePosition.Data[1], imagePosition.Data[3]);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Could not find image position");
             }
@@ -184,7 +188,7 @@ namespace EvilDicom.Helper
                 IntegerString numberOfFrames = df.NUMBER_OF_FRAMES as IntegerString;
                 props.NumberOfFrames = numberOfFrames.Data[0];
             }
-            catch (Exception e) { Console.WriteLine("Could not find number of frames"); }
+            catch (Exception) { Console.WriteLine("Could not find number of frames"); }
 
             //Set Grid Frame Offset Vector
             try
@@ -192,7 +196,7 @@ namespace EvilDicom.Helper
                 DecimalString offsetVector = df.GRID_FRAME_OFFSET_VECTOR as DecimalString;
                 props.OffsetVector = offsetVector.Data;
             }
-            catch (Exception e) { Console.WriteLine("Could not find grid frame offset vector"); }
+            catch (Exception) { Console.WriteLine("Could not find grid frame offset vector"); }
 
             return props;
         }
@@ -206,7 +210,6 @@ namespace EvilDicom.Helper
         /// <returns></returns>
         public static float[] GetPixels(PixelData data, ImageProperties properties)
         {
-
             //Set up matrix
             int frames = properties.NumberOfFrames > 0 ? properties.NumberOfFrames : 1;
             float[] values = new float[properties.Rows * properties.Columns * frames];
@@ -316,6 +319,35 @@ namespace EvilDicom.Helper
                 max = f > max ? f : max;
             }
         }
+
+#if NETFX_CORE
+        public static Task<BitmapSource> GetBitmapAsync(PixelData data, ImageProperties properties)
+        {
+            return GetBitmapAsync(GetPixels(data, properties), properties);
+        }
+
+        public static async Task<BitmapSource> GetBitmapAsync(float[] pixels, ImageProperties properties)
+        {
+            var bmp = new WriteableBitmap(properties.Rows, properties.Columns);
+
+            using (var stream = bmp.PixelBuffer.AsStream())
+            {
+                var bytes = new byte[4 * pixels.Length];
+                for (int i = 0; i < pixels.Length; i++)
+                {
+                    var greyness = properties.WindowAndLevel.GetValue(pixels[i]);
+                    bytes[4 * i] = greyness;
+                    bytes[4 * i + 1] = greyness;
+                    bytes[4 * i + 2] = greyness;
+                    bytes[4 * i + 3] = 0xff;
+                }
+
+                await stream.WriteAsync(bytes, 0, bytes.Length);
+            }
+
+            return bmp;
+        }
+#else
         public static ColorPalette GetGrayScalePalette()
         {
             using (var bmp = new Bitmap(1, 1, PixelFormat.Format8bppIndexed))
@@ -330,35 +362,12 @@ namespace EvilDicom.Helper
             }
         }
 
-        public static Bitmap GetBitmap(PixelData data, ImageProperties properties)
+        public static System.Drawing.Bitmap GetBitmap(PixelData data, ImageProperties properties)
         {
-            float[] values = GetPixels(data, properties);
-            byte[] bytes = new byte[values.Length];
-            for(int i=0;i<values.Length;i++)
-            {
-                bytes[i] = properties.WindowAndLevel.GetValue(values[i]);
-            }
-
-            //Here create the Bitmap to the know height, width and format
-            Bitmap bmp = new Bitmap(properties.Rows, properties.Columns, PixelFormat.Format8bppIndexed);
-            bmp.Palette = GetGrayScalePalette();
-
-            //Create a BitmapData and Lock all pixels to be written
-            BitmapData bmpData = bmp.LockBits(
-                                 new Rectangle(0, 0, bmp.Width, bmp.Height),
-                                 ImageLockMode.WriteOnly, bmp.PixelFormat);
-
-            //Copy the data from the byte array into BitmapData.Scan0
-            Marshal.Copy(bytes, 0, bmpData.Scan0, bytes.Length);
-
-            //Unlock the pixels
-            bmp.UnlockBits(bmpData);
-
-            //Return the bitmap
-            return bmp;
+            return GetBitmap(GetPixels(data, properties), properties);
         }
 
-        public static Bitmap GetBitmap(float[] pixels, ImageProperties properties)
+        public static System.Drawing.Bitmap GetBitmap(float[] pixels, ImageProperties properties)
         {
             byte[] bytes = new byte[pixels.Length];
             for (int i = 0; i < pixels.Length; i++)
@@ -383,8 +392,8 @@ namespace EvilDicom.Helper
 
             //Return the bitmap
             return bmp;
-
         }
+#endif
 
         private static float GetNativePixels(BinaryReader r, ImageProperties properties)
         {
@@ -408,7 +417,7 @@ namespace EvilDicom.Helper
                         byte[] bytes = BitConverter.GetBytes(s);
                         if ((bytes[0] == bytes16[0] && bytes[1] == bytes16[1]) || (bytes[0] == bytes16[1] && bytes[1] == bytes16[0]))
                         {
-                            Console.Write("Stop!");
+                            Console.WriteLine("Stop!");
                         }
                         value = properties.Function.RescaledValue(BitConverter.ToInt16(bytes16, 0));
                         break;

@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="Metro.DicomReader.MainPage"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="OpenFileButton" Margin="20,10,0,20" Tapped="OpenFileButton_Tapped_1">Open file</Button>
+        <ScrollViewer Grid.Row="1" Grid.Column="0">
+            <TextBlock x:Name="DicomXmlDump"  ScrollViewer.VerticalScrollMode="Auto"/>
+        </ScrollViewer>
+        <Image Grid.Row="1" Grid.Column="1" x:Name="DicomImage" Stretch="None"/>
+    </Grid>
+</Page>

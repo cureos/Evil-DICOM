@@ -9,7 +9,7 @@ namespace EvilDicom.VR
 {
     public class Fragment:DICOMElement
     {
-        internal void WriteBytes(System.IO.BinaryWriter b, bool isLittleEndian)
+        public override void WriteBytes(System.IO.BinaryWriter b, bool isLittleEndian)
         {
             DICOMWriter.WriteTag(b, new Tag(TagHelper.SEQUENCE_ITEM), isLittleEndian);
             DICOMWriter.WriteLength(b,Constants.EncodeType.IMPLICIT, ByteData.Length,isLittleEndian);

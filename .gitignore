@@ -1,0 +1,10 @@
+# git ignore file
+_Resharper.EvilDicom/
+[Oo]bj/
+[Bb]in/
+*.suo
+EvilDicom/doc/ndoc3.log
+EvilDicom/EvilDicom.xml
+
+EvilDicom.sln.DotSettings.user
+/EvilDicom\doc/ndoc.xml

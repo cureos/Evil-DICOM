@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3FFB9D6C-6FE0-45C4-90F8-6F1D20101612}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EvilDicom</RootNamespace>
+    <AssemblyName>EvilDicom.Metro</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <EmbeddedResource Include="..\EvilDicom\dictionary.xml">
+      <Link>dictionary.xml</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\EvilDicom\Components\Constants.cs">
+      <Link>Components\Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\DICOMDictionary.cs">
+      <Link>Components\DICOMDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\DICOMElement.cs">
+      <Link>Components\DICOMElement.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\DICOMFile.cs">
+      <Link>Components\DICOMFile.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\DICOMObject.cs">
+      <Link>Components\DICOMObject.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\DICOMObjectExtensions.cs">
+      <Link>Components\DICOMObjectExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\Tag.cs">
+      <Link>Components\Tag.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\ArrayHelper.cs">
+      <Link>Helper\ArrayHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\ByteHelper.cs">
+      <Link>Helper\ByteHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\CompressionHelper.cs">
+      <Link>Helper\CompressionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\DICOMReader.cs">
+      <Link>Helper\DICOMReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\DICOMWriter.cs">
+      <Link>Helper\DICOMWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\Extensions.cs">
+      <Link>Helper\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\ImageHelper.cs">
+      <Link>Helper\ImageHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\SequenceHelper.cs">
+      <Link>Helper\SequenceHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\TagHelper.cs">
+      <Link>Helper\TagHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\UIDHelper.cs">
+      <Link>Helper\UIDHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\XMLHelper.cs">
+      <Link>Helper\XMLHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\ImageMatrix.cs">
+      <Link>Image\ImageMatrix.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\ImageProperties.cs">
+      <Link>Image\ImageProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\Pixel.cs">
+      <Link>Image\Pixel.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\PixelCell.cs">
+      <Link>Image\PixelCell.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\Position.cs">
+      <Link>Image\Position.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\ScalingFunction.cs">
+      <Link>Image\ScalingFunction.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\Voxel.cs">
+      <Link>Image\Voxel.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\WindowLevel.cs">
+      <Link>Image\WindowLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Matrix\KernalHelper.cs">
+      <Link>Matrix\KernalHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Matrix\Matrix3D.cs">
+      <Link>Matrix\Matrix3D.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Matrix\MatrixHelper.cs">
+      <Link>Matrix\MatrixHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\RTPlan\BeamLimitingDevicePosition.cs">
+      <Link>RTPlan\BeamLimitingDevicePosition.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\RTPlan\BeamLimitingDevicePosSequence.cs">
+      <Link>RTPlan\BeamLimitingDevicePosSequence.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\RTPlan\ControlPoint.cs">
+      <Link>RTPlan\ControlPoint.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\RTPlan\DoseCube.cs">
+      <Link>RTPlan\DoseCube.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\AbstractBinaryVR.cs">
+      <Link>VR\AbstractBinaryVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\AbstractStringVR.cs">
+      <Link>VR\AbstractStringVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\AgeString.cs">
+      <Link>VR\AgeString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\ApplicationEntity.cs">
+      <Link>VR\ApplicationEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\AttributeTag.cs">
+      <Link>VR\AttributeTag.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\CodeString.cs">
+      <Link>VR\CodeString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\DateTimeVR.cs">
+      <Link>VR\DateTimeVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\DateVR.cs">
+      <Link>VR\DateVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\DecimalString.cs">
+      <Link>VR\DecimalString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\FloatingPointDouble.cs">
+      <Link>VR\FloatingPointDouble.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\FloatingPointSingle.cs">
+      <Link>VR\FloatingPointSingle.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\Fragment.cs">
+      <Link>VR\Fragment.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\IntegerString.cs">
+      <Link>VR\IntegerString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\LongString.cs">
+      <Link>VR\LongString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\LongText.cs">
+      <Link>VR\LongText.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\NullVR.cs">
+      <Link>VR\NullVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\OtherByteString.cs">
+      <Link>VR\OtherByteString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\OtherFloatString.cs">
+      <Link>VR\OtherFloatString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\OtherWordString.cs">
+      <Link>VR\OtherWordString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\PersonsName.cs">
+      <Link>VR\PersonsName.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\PixelData.cs">
+      <Link>VR\PixelData.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\Sequence.cs">
+      <Link>VR\Sequence.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\SequenceItem.cs">
+      <Link>VR\SequenceItem.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\ShortString.cs">
+      <Link>VR\ShortString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\ShortText.cs">
+      <Link>VR\ShortText.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\SignedLong.cs">
+      <Link>VR\SignedLong.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\SignedShort.cs">
+      <Link>VR\SignedShort.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\TimeVR.cs">
+      <Link>VR\TimeVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\UniqueIdentifier.cs">
+      <Link>VR\UniqueIdentifier.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\UnlimitedText.cs">
+      <Link>VR\UnlimitedText.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\UnsignedLong.cs">
+      <Link>VR\UnsignedLong.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\UnsignedShort.cs">
+      <Link>VR\UnsignedShort.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

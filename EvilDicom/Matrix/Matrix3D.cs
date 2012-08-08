@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EvilDicom.Helper;
 using System.Diagnostics;
+
+#if NETFX_CORE
+using Console = System.Diagnostics.Debug;
+#endif
 
 namespace EvilDicom.Matrix
 {

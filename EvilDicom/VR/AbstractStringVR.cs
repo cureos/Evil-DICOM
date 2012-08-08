@@ -14,7 +14,7 @@ namespace EvilDicom
             {
                 set
                 {
-                    System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
+                    System.Text.UTF8Encoding enc = new System.Text.UTF8Encoding();
                     //Check to make sure the string has an even amount of characters
                     //If not add space character afterwards
                     if (value.Length % 2 == 0)
@@ -29,8 +29,8 @@ namespace EvilDicom
                 }
                 get
                 {
-                    System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
-                    return enc.GetString(ByteData).TrimEnd(new char[] { '\0' });
+                    System.Text.UTF8Encoding enc = new System.Text.UTF8Encoding();
+                    return enc.GetString(ByteData, 0, ByteData.Length).TrimEnd(new char[] { '\0' });
                 }
             }
 

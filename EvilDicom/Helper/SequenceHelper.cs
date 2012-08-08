@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 using EvilDicom.Components;
 using EvilDicom.VR;
-using EvilDicom.Image;
+
+#if NETFX_CORE
+using Console = System.Diagnostics.Debug;
+#endif
 
 namespace EvilDicom.Helper
 {

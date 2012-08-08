@@ -14,7 +14,9 @@ namespace EvilDicom.Components
     /// </summary>
     public class DICOMDictionary
     {
-
+#if NETFX_CORE
+        private static readonly Assembly ExecutingAssembly = typeof(DICOMDictionary).GetTypeInfo().Assembly;
+#endif
         //This is the interface for the XML file where the dictionary is stored   
         /// <summary>
         /// This method takes a Tag with just the ID attribute and looks it up
@@ -27,8 +29,13 @@ namespace EvilDicom.Components
         public static string LookupTag(Tag t)
         {
             string vr = "";
+#if NETFX_CORE
+            var s = ExecutingAssembly.GetManifestResourceStream("EvilDicom.dictionary.xml");
+            var reader = XmlReader.Create(s);
+#else
             Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream("EvilDicom.dictionary.xml");
             XmlTextReader reader = new XmlTextReader(s);
+#endif
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Element && reader.Name.Equals("element"))
@@ -52,8 +59,13 @@ namespace EvilDicom.Components
         public static List<Tag> GetAllTags()
         {
             List<Tag> tags = new List<Tag>();
+#if NETFX_CORE
+            var s = ExecutingAssembly.GetManifestResourceStream("EvilDicom.dictionary.xml");
+            var reader = XmlReader.Create(s);
+#else
             Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream("EvilDicom.dictionary.xml");
             XmlTextReader reader = new XmlTextReader(s);
+#endif
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Element && reader.Name.Equals("element"))

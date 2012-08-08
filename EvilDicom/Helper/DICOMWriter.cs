@@ -23,7 +23,7 @@ namespace EvilDicom.Helper
             {
                 b.Write((byte)0x00);
             }
-            System.Text.ASCIIEncoding ascii = new System.Text.ASCIIEncoding();
+            System.Text.UTF8Encoding ascii = new System.Text.UTF8Encoding();
             foreach (byte bt in ascii.GetBytes("DICM"))
             {
                 b.Write(bt);
@@ -85,7 +85,7 @@ namespace EvilDicom.Helper
         /// <param name="encType">The encoding type of this VR</param>
         public static void WriteVR(BinaryWriter b, string vr, Constants.EncodeType encType)
         {
-            System.Text.ASCIIEncoding ascii = new System.Text.ASCIIEncoding();
+            System.Text.UTF8Encoding ascii = new System.Text.UTF8Encoding();
             switch (encType)
             {
                 case Constants.EncodeType.IMPLICIT:

@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using EvilDicom.Matrix;
 using EvilDicom.Components;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using EvilDicom.Helper;
 using EvilDicom.VR;
+
+#if NETFX_CORE
+using Windows.Storage;
+using Windows.UI.Xaml.Media.Imaging;
+using Console = System.Diagnostics.Debug;
+#else
+using System.Windows.Forms;
+using System.Drawing.Imaging;
+#endif
 
 namespace EvilDicom.Image
 {
@@ -23,10 +31,7 @@ namespace EvilDicom.Image
         /// This contains all of the pixel data as float elements in a one dimensional array.
         /// </summary>
         public float[] Image { get; set; }
-        /// <summary>
-        /// This contains the bitmap image for displaying the image matrix with the proper window and level.
-        /// </summary>
-        private Bitmap BitImage { get; set; }
+
         /// <summary>
         /// The properties of the image file(s).
         /// </summary>
@@ -43,7 +48,11 @@ namespace EvilDicom.Image
         /// This constructor takes a single dicom file path and parses out the image properties and the pixel data.
         /// </summary>
         /// <param name="dicomFile">a string containing the path to the DICOM file to create the matrix</param>
+#if NETFX_CORE
+        public ImageMatrix(IStorageFile dicomFile)
+#else
         public ImageMatrix(string dicomFile)
+#endif
         {
             DICOMFile df = new DICOMFile(dicomFile);
             Properties = ImageHelper.PullProperties(df);
@@ -54,7 +63,11 @@ namespace EvilDicom.Image
         /// This constructor takes a string of dicom file paths and parses out the image properties and the pixel data.
         /// </summary>
         /// <param name="dicomFiles">A string array of all of the paths of the dicom files of the image(s) to load into the matrix</param>
+#if NETFX_CORE
+        public ImageMatrix(IStorageFile[] dicomFiles)
+#else
         public ImageMatrix(string[] dicomFiles)
+#endif
         {
             InitializeMatrix(dicomFiles);
 
@@ -66,7 +79,7 @@ namespace EvilDicom.Image
             }
             else
             {
-                foreach (string file in dicomFiles)
+                foreach (var file in dicomFiles)
                 {
                     ImageProperties testProperty;
                     DICOMFile df = new DICOMFile(file);
@@ -79,6 +92,7 @@ namespace EvilDicom.Image
             }
         }
 
+#if !NETFX_CORE
         /// <summary>
         /// This constructor takes a string of dicom file paths and parses out the image properties and the pixel data. It also takes
         /// a progress bar and progress label for updating a UI.
@@ -86,7 +100,7 @@ namespace EvilDicom.Image
         /// <param name="dicomFiles">A string array of all of the paths of the dicom files of the image(s) to load into the matrix</param>
         /// <param name="progressBar">The progress bar in the UI to be updated</param>
         /// <param name="progressLabel">The progress label in the UI to be updated</param>
-        public ImageMatrix(string[] dicomFiles, System.Windows.Forms.ProgressBar progressBar, System.Windows.Forms.Label progressLabel)
+        public ImageMatrix(string[] dicomFiles, ProgressBar progressBar, Label progressLabel)
         {
             //UPDATE UI
             progressLabel.Text = "Opening Files";
@@ -128,7 +142,7 @@ namespace EvilDicom.Image
             progressLabel.Update();
             progressBar.Value = 0;
         }
-
+#endif
 
         /// <summary>
         /// This method is designed to return a 24bit RGB bitmap image from one slice of the cube
@@ -136,7 +150,11 @@ namespace EvilDicom.Image
         /// </summary>
         /// <param name="slice">the integer slice number to be drawn. The first slice is zero.</param>
         /// <returns>The 24bit RGB image for display</returns>
+#if NETFX_CORE
+        public virtual async Task<BitmapSource> GetImage(int slice)
+#else
         public virtual System.Drawing.Image GetImage(int slice)
+#endif
         {
             float[] imagePixels = GetPartialMatrix(slice);
 
@@ -150,8 +168,11 @@ namespace EvilDicom.Image
                 WindowLevel wl = new WindowLevel(window, level);
                 this.Properties.WindowAndLevel = wl;
             }
-
+#if NETFX_CORE
+            return await ImageHelper.GetBitmapAsync(imagePixels, Properties);
+#else
             return ImageHelper.GetBitmap(imagePixels, Properties);
+#endif
         }
 
         /// <summary>
@@ -190,7 +211,11 @@ namespace EvilDicom.Image
             return true;
         }
 
+#if NETFX_CORE
+        private void InitializeMatrix(Windows.Storage.IStorageFile[] dicomFiles)
+#else
         private void InitializeMatrix(string[] dicomFiles)
+#endif
         {
 
             Properties = ImageHelper.PullProperties(new DICOMFile(dicomFiles[0]));
@@ -208,7 +233,7 @@ namespace EvilDicom.Image
             else
             {
                 try { Image = new float[Properties.Size * Properties.NumberOfFrames]; }
-                catch (Exception e) { Console.WriteLine("Could not initialize single dicom file frame data"); }
+                catch (Exception) { Console.WriteLine("Could not initialize single dicom file frame data"); }
             }
         }
     }

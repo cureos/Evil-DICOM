@@ -13,7 +13,6 @@ namespace EvilDicom.VR
     public class PixelData : DICOMElement
     {
         private Constants.EncodeType encType;
-        private string p;
 
         public PixelData(byte[] data, Constants.EncodeType encType, bool isLittleEndian, string vr, bool isEncapsulated)
         {
