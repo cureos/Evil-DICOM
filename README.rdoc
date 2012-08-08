@@ -2,7 +2,7 @@
 
 Copyright (c) 2011-2012 Rex Cardan, Metro adaptation (c) 2012 Anders Gustafsson, Cureos AB 
 
-Dual licensed and distributable under the terms of the _GPL 3.0 license_ http://opensource.org/licenses/GPL-3.0 and the _RPL 1.5 license_ http://opensource.org/licenses/rpl-1.5 .
+Dual licensed and distributable under the terms of the <em>GPL 3.0 license</em> http://opensource.org/licenses/GPL-3.0 and the <em>RPL 1.5 license</em> http://opensource.org/licenses/rpl-1.5 .
 
 
 == Summary
