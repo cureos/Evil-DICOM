@@ -15,7 +15,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Grid.Column="0" x:Name="OpenFileButton" Margin="20,10,0,20" Tapped="OpenFileButton_Tapped_1">Open file</Button>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="OpenFileButton" Margin="20,10,0,20" Tapped="OpenFileButtonTapped">Open file</Button>
         <ScrollViewer Grid.Row="1" Grid.Column="0">
             <TextBlock x:Name="DicomXmlDump"  ScrollViewer.VerticalScrollMode="Auto"/>
         </ScrollViewer>

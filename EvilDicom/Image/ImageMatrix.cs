@@ -190,7 +190,7 @@ namespace EvilDicom.Image
             int offset;//The offset of the first pixel of this image in the whole matrix
             if (imageProperties.ImageNumber < 1) { offset = 0; }
             else { offset = (imageProperties.ImageNumber - 1) * Properties.Size; }
-            if (offset > Image.Length) { offset = 0; }
+            if (offset >= Image.Length) { offset = 0; }
             float[] imagePixels = ImageHelper.GetPixels((PixelData)df.PIXEL_DATA, imageProperties);
             Array.Copy(imagePixels, 0, Image, offset, imagePixels.Length);
         }
