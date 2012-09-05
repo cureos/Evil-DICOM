@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.EvilDicom.Core", "MT.EvilDicom\MT.EvilDicom.Core.csproj", "{0C5D84EF-5EB3-4E95-B2E5-B679138076D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.EvilDicom.Image", "MT.EvilDicom\MT.EvilDicom.Image.csproj", "{22EA1E91-FDF9-4D1A-9AC6-E9D1A9D9F37B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C5D84EF-5EB3-4E95-B2E5-B679138076D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5D84EF-5EB3-4E95-B2E5-B679138076D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5D84EF-5EB3-4E95-B2E5-B679138076D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5D84EF-5EB3-4E95-B2E5-B679138076D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22EA1E91-FDF9-4D1A-9AC6-E9D1A9D9F37B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22EA1E91-FDF9-4D1A-9AC6-E9D1A9D9F37B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22EA1E91-FDF9-4D1A-9AC6-E9D1A9D9F37B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22EA1E91-FDF9-4D1A-9AC6-E9D1A9D9F37B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MT.EvilDicom\MT.EvilDicom.Core.csproj
+	EndGlobalSection
+EndGlobal
