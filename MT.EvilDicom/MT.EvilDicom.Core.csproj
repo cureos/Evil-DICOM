@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0C5D84EF-5EB3-4E95-B2E5-B679138076D1}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MT.EvilDicom</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>MT.EvilDicom</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+    <Reference Include="System.Numerics" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="Helper\" />
+    <Folder Include="Image\" />
+    <Folder Include="Matrix\" />
+    <Folder Include="RTPlan\" />
+    <Folder Include="VR\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\EvilDicom\dictionary.xml">
+      <Link>dictionary.xml</Link>
+    </None>
+    <None Include="..\EvilDicom\ED_48.ico">
+      <Link>ED_48.ico</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\EvilDicom\Components\Constants.cs">
+      <Link>Components\Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\DICOMDictionary.cs">
+      <Link>Components\DICOMDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\DICOMElement.cs">
+      <Link>Components\DICOMElement.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\DICOMFile.cs">
+      <Link>Components\DICOMFile.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\DICOMObject.cs">
+      <Link>Components\DICOMObject.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\DICOMObjectExtensions.cs">
+      <Link>Components\DICOMObjectExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Components\Tag.cs">
+      <Link>Components\Tag.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\ArrayHelper.cs">
+      <Link>Helper\ArrayHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\ByteHelper.cs">
+      <Link>Helper\ByteHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\CompressionHelper.cs">
+      <Link>Helper\CompressionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\DICOMReader.cs">
+      <Link>Helper\DICOMReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\DICOMWriter.cs">
+      <Link>Helper\DICOMWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\Extensions.cs">
+      <Link>Helper\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\SequenceHelper.cs">
+      <Link>Helper\SequenceHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\TagHelper.cs">
+      <Link>Helper\TagHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\UIDHelper.cs">
+      <Link>Helper\UIDHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Helper\XMLHelper.cs">
+      <Link>Helper\XMLHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\ImageProperties.cs">
+      <Link>Image\ImageProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\Pixel.cs">
+      <Link>Image\Pixel.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\PixelCell.cs">
+      <Link>Image\PixelCell.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\Position.cs">
+      <Link>Image\Position.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\ScalingFunction.cs">
+      <Link>Image\ScalingFunction.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\Voxel.cs">
+      <Link>Image\Voxel.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Image\WindowLevel.cs">
+      <Link>Image\WindowLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Matrix\KernalHelper.cs">
+      <Link>Matrix\KernalHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Matrix\Matrix3D.cs">
+      <Link>Matrix\Matrix3D.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\Matrix\MatrixHelper.cs">
+      <Link>Matrix\MatrixHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\RTPlan\BeamLimitingDevicePosition.cs">
+      <Link>RTPlan\BeamLimitingDevicePosition.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\RTPlan\BeamLimitingDevicePosSequence.cs">
+      <Link>RTPlan\BeamLimitingDevicePosSequence.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\RTPlan\ControlPoint.cs">
+      <Link>RTPlan\ControlPoint.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\RTPlan\DoseCube.cs">
+      <Link>RTPlan\DoseCube.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\AbstractBinaryVR.cs">
+      <Link>VR\AbstractBinaryVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\AbstractStringVR.cs">
+      <Link>VR\AbstractStringVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\AgeString.cs">
+      <Link>VR\AgeString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\ApplicationEntity.cs">
+      <Link>VR\ApplicationEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\AttributeTag.cs">
+      <Link>VR\AttributeTag.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\CodeString.cs">
+      <Link>VR\CodeString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\DateTimeVR.cs">
+      <Link>VR\DateTimeVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\DateVR.cs">
+      <Link>VR\DateVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\DecimalString.cs">
+      <Link>VR\DecimalString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\FloatingPointDouble.cs">
+      <Link>VR\FloatingPointDouble.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\FloatingPointSingle.cs">
+      <Link>VR\FloatingPointSingle.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\Fragment.cs">
+      <Link>VR\Fragment.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\IntegerString.cs">
+      <Link>VR\IntegerString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\LongString.cs">
+      <Link>VR\LongString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\LongText.cs">
+      <Link>VR\LongText.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\NullVR.cs">
+      <Link>VR\NullVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\OtherByteString.cs">
+      <Link>VR\OtherByteString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\OtherFloatString.cs">
+      <Link>VR\OtherFloatString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\OtherWordString.cs">
+      <Link>VR\OtherWordString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\PersonsName.cs">
+      <Link>VR\PersonsName.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\PixelData.cs">
+      <Link>VR\PixelData.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\Sequence.cs">
+      <Link>VR\Sequence.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\SequenceItem.cs">
+      <Link>VR\SequenceItem.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\ShortString.cs">
+      <Link>VR\ShortString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\ShortText.cs">
+      <Link>VR\ShortText.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\SignedLong.cs">
+      <Link>VR\SignedLong.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\SignedShort.cs">
+      <Link>VR\SignedShort.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\TimeVR.cs">
+      <Link>VR\TimeVR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\UniqueIdentifier.cs">
+      <Link>VR\UniqueIdentifier.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\UnlimitedText.cs">
+      <Link>VR\UnlimitedText.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\UnsignedLong.cs">
+      <Link>VR\UnsignedLong.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDicom\VR\UnsignedShort.cs">
+      <Link>VR\UnsignedShort.cs</Link>
+    </Compile>
+  </ItemGroup>
+</Project>
