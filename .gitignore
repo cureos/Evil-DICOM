@@ -10,3 +10,7 @@ EvilDicom.sln.DotSettings.user
 .DS_Store
 *.userprefs
 *.csproj.user
+
+*.user
+*.ncrunchsolution
+EvilDICOM.Core/_ReSharper.EvilDICOM.Core/
