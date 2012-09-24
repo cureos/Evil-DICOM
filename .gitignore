@@ -9,3 +9,4 @@ EvilDicom.sln.DotSettings.user
 /EvilDicom/doc/ndoc.xml
 .DS_Store
 *.userprefs
+*.csproj.user
