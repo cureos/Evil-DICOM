@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E8F8C8EA-773A-442B-A1D7-2490DFC7C065}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EvilDICOM.Core</RootNamespace>
+    <AssemblyName>PCL.EvilDICOM.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile4</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\EvilDICOM.Core\DICOMObject.cs">
+      <Link>DICOMObject.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Dictionaries\TagDictionary.cs">
+      <Link>Dictionaries\TagDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Dictionaries\TagVRDictionary.cs">
+      <Link>Dictionaries\TagVRDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Dictionaries\VRDictionary.cs">
+      <Link>Dictionaries\VRDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\AbstractElement.cs">
+      <Link>Element\AbstractElement.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\AgeString.cs">
+      <Link>Element\AgeString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\ApplicationEntity.cs">
+      <Link>Element\ApplicationEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\AttributeTag.cs">
+      <Link>Element\AttributeTag.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\CodeString.cs">
+      <Link>Element\CodeString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\Date.cs">
+      <Link>Element\Date.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\DateTime.cs">
+      <Link>Element\DateTime.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\DecimalString.cs">
+      <Link>Element\DecimalString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\FloatingPointDouble.cs">
+      <Link>Element\FloatingPointDouble.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\FloatingPointSingle.cs">
+      <Link>Element\FloatingPointSingle.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\IntegerString.cs">
+      <Link>Element\IntegerString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\LongString.cs">
+      <Link>Element\LongString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\LongText.cs">
+      <Link>Element\LongText.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\OtherByteString.cs">
+      <Link>Element\OtherByteString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\OtherFloatString.cs">
+      <Link>Element\OtherFloatString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\OtherWordString.cs">
+      <Link>Element\OtherWordString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\PersonName.cs">
+      <Link>Element\PersonName.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\Sequence.cs">
+      <Link>Element\Sequence.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\ShortString.cs">
+      <Link>Element\ShortString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\ShortText.cs">
+      <Link>Element\ShortText.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\SignedLong.cs">
+      <Link>Element\SignedLong.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\SignedShort.cs">
+      <Link>Element\SignedShort.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\Time.cs">
+      <Link>Element\Time.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\UniqueIdentifier.cs">
+      <Link>Element\UniqueIdentifier.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\Unknown.cs">
+      <Link>Element\Unknown.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\UnlimitedText.cs">
+      <Link>Element\UnlimitedText.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\UnsignedLong.cs">
+      <Link>Element\UnsignedLong.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\UnsignedShort.cs">
+      <Link>Element\UnsignedShort.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Element\_ElementFactory.cs">
+      <Link>Element\_ElementFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\AbortReason.cs">
+      <Link>Enums\AbortReason.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\AbortSource.cs">
+      <Link>Enums\AbortSource.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\CommandField.cs">
+      <Link>Enums\CommandField.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\ItemType.cs">
+      <Link>Enums\ItemType.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\NetworkState.cs">
+      <Link>Enums\NetworkState.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\PDUType.cs">
+      <Link>Enums\PDUType.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\RejectReason.cs">
+      <Link>Enums\RejectReason.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\RejectResult.cs">
+      <Link>Enums\RejectResult.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\RejectSource.cs">
+      <Link>Enums\RejectSource.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\Status.cs">
+      <Link>Enums\Status.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\TransferSyntax.cs">
+      <Link>Enums\TransferSyntax.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\VR.cs">
+      <Link>Enums\VR.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Enums\VREncoding.cs">
+      <Link>Enums\VREncoding.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Extensions\ByteExtensions.cs">
+      <Link>Extensions\ByteExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Extensions\IDICOMElementExtensions.cs">
+      <Link>Extensions\IDICOMElementExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Extensions\IDICOMElementListExtensions.cs">
+      <Link>Extensions\IDICOMElementListExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Extensions\StringExtensions.cs">
+      <Link>Extensions\StringExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\AbstractSyntax.cs">
+      <Link>Helpers\AbstractSyntax.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\ArrayHelper.cs">
+      <Link>Helpers\ArrayHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\ByteHelper.cs">
+      <Link>Helpers\ByteHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\DoubleHelper.cs">
+      <Link>Helpers\DoubleHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\EnumHelper.cs">
+      <Link>Helpers\EnumHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\ExceptionHelper.cs">
+      <Link>Helpers\ExceptionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\PersonNameHelper.cs">
+      <Link>Helpers\PersonNameHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\TagHelper.cs">
+      <Link>Helpers\TagHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\TagSorter.cs">
+      <Link>Helpers\TagSorter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\TransferSyntaxHelper.cs">
+      <Link>Helpers\TransferSyntaxHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Helpers\UIDHelper.cs">
+      <Link>Helpers\UIDHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Interfaces\IDICOMElement.cs">
+      <Link>Interfaces\IDICOMElement.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Interfaces\IDICOMMessage.cs">
+      <Link>Interfaces\IDICOMMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Interfaces\IDICOMString.cs">
+      <Link>Interfaces\IDICOMString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Interfaces\IIOD.cs">
+      <Link>Interfaces\IIOD.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Data\BigEndianReader.cs">
+      <Link>IO\Data\BigEndianReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Data\DataComposer.cs">
+      <Link>IO\Data\DataComposer.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Data\DataPadder.cs">
+      <Link>IO\Data\DataPadder.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Data\DataRestriction.cs">
+      <Link>IO\Data\DataRestriction.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Data\DICOMString.cs">
+      <Link>IO\Data\DICOMString.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Data\LittleEndianReader.cs">
+      <Link>IO\Data\LittleEndianReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Data\LittleEndianWriter.cs">
+      <Link>IO\Data\LittleEndianWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Data\StringDataComposer.cs">
+      <Link>IO\Data\StringDataComposer.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Data\StringDataParser.cs">
+      <Link>IO\Data\StringDataParser.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\DataReader.cs">
+      <Link>IO\Reading\DataReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\DICOMBinaryReader.cs">
+      <Link>IO\Reading\DICOMBinaryReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\DICOMElementReader.cs">
+      <Link>IO\Reading\DICOMElementReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\DICOMFileReader.cs">
+      <Link>IO\Reading\DICOMFileReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\DICOMObjectReader.cs">
+      <Link>IO\Reading\DICOMObjectReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\DICOMPreambleReader.cs">
+      <Link>IO\Reading\DICOMPreambleReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\LengthReader.cs">
+      <Link>IO\Reading\LengthReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\SequenceItemReader.cs">
+      <Link>IO\Reading\SequenceItemReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\SequenceReader.cs">
+      <Link>IO\Reading\SequenceReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\TagReader.cs">
+      <Link>IO\Reading\TagReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Reading\VRReader.cs">
+      <Link>IO\Reading\VRReader.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\DataWriter.cs">
+      <Link>IO\Writing\DataWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\DICOMBinaryWriter.cs">
+      <Link>IO\Writing\DICOMBinaryWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\DICOMElementWriter.cs">
+      <Link>IO\Writing\DICOMElementWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\DICOMFileWriter.cs">
+      <Link>IO\Writing\DICOMFileWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\DICOMObjectWriter.cs">
+      <Link>IO\Writing\DICOMObjectWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\DICOMPreambleWriter.cs">
+      <Link>IO\Writing\DICOMPreambleWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\DICOMTagWriter.cs">
+      <Link>IO\Writing\DICOMTagWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\DICOMWriteSettings.cs">
+      <Link>IO\Writing\DICOMWriteSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\GroupWriter.cs">
+      <Link>IO\Writing\GroupWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\LengthWriter.cs">
+      <Link>IO\Writing\LengthWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\SequenceItemWriter.cs">
+      <Link>IO\Writing\SequenceItemWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\SequenceWriter.cs">
+      <Link>IO\Writing\SequenceWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\IO\Writing\VRWriter.cs">
+      <Link>IO\Writing\VRWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Modules\FileMetadata.cs">
+      <Link>Modules\FileMetadata.cs</Link>
+    </Compile>
+    <Compile Include="..\EvilDICOM.Core\Modules\Patient.cs">
+      <Link>Modules\Patient.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

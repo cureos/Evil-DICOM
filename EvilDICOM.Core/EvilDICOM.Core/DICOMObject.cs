@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using EvilDICOM.Core.Interfaces;
@@ -93,7 +94,7 @@ namespace EvilDICOM.Core
         public List<T> FindAll<T>() 
         {
             Type t = typeof(T);
-            return AllElements.Where(el => el is T).Select(el=>(T)Convert.ChangeType(el,t)).ToList();
+            return AllElements.Where(el => el is T).Select(el=>(T)Convert.ChangeType(el,t, CultureInfo.InvariantCulture)).ToList();
         }
 
         /// <summary>

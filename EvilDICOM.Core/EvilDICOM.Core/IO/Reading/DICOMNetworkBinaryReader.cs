@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Net.Sockets;
+using System.Text;
 using System.IO;
 
 namespace EvilDICOM.Core.IO.Reading
@@ -21,8 +19,7 @@ namespace EvilDICOM.Core.IO.Reading
         {
             _socket = socket;
             _stream = stream;
-            _binaryReader = new BinaryReader(stream,
-                new System.Text.ASCIIEncoding());
+            _binaryReader = new BinaryReader(stream, new UTF8Encoding());
         }
 
         public new byte[] Peek(int count)

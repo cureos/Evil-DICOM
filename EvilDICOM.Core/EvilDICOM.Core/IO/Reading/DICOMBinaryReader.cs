@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Net.Sockets;
 
 namespace EvilDICOM.Core.IO.Reading
 {
@@ -26,7 +22,7 @@ namespace EvilDICOM.Core.IO.Reading
         {
             _binaryReader = new BinaryReader(
                 new FileStream(filePath, FileMode.Open, FileAccess.Read),
-                new System.Text.ASCIIEncoding());
+                new System.Text.UTF8Encoding());
         }
 
         /// <summary>
@@ -36,7 +32,7 @@ namespace EvilDICOM.Core.IO.Reading
         public DICOMBinaryReader(byte[] byteStream)
         {
             _binaryReader = new BinaryReader(new MemoryStream(byteStream),
-                new System.Text.ASCIIEncoding());
+                new System.Text.UTF8Encoding());
         }
 
         /// <summary>

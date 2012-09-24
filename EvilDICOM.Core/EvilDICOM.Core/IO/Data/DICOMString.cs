@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace EvilDICOM.Core.IO.Data
 {
@@ -9,13 +6,13 @@ namespace EvilDICOM.Core.IO.Data
     {
         public static string Read(byte[] data)
         {
-            System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
-            return enc.GetString(data).TrimEnd(new char[] { '\0' }).TrimEnd(new char[] { ' ' });
+            var enc = new UTF8Encoding();
+            return enc.GetString(data, 0, data.Length).TrimEnd(new[] { '\0' }).TrimEnd(new[] { ' ' });
         }
 
         public static byte[] Write(string data)
         {
-            System.Text.ASCIIEncoding ascii = new System.Text.ASCIIEncoding();
+            var ascii = new UTF8Encoding();
 
             if (IsEven(data))
             {
@@ -32,7 +29,7 @@ namespace EvilDICOM.Core.IO.Data
             return data.Length % 2 == 0;
         }
 
-        private static byte[] PadOddBytes(ASCIIEncoding ascii, string data)
+        private static byte[] PadOddBytes(Encoding ascii, string data)
         {
             return ascii.GetBytes(data + '\0');
         }
