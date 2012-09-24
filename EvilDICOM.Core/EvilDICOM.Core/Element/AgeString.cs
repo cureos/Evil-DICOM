@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EvilDICOM.Core.Interfaces;
-using EvilDICOM.Core.IO.Data;
+﻿using EvilDICOM.Core.IO.Data;
 
 namespace EvilDICOM.Core.Element
 {
-    public class AgeString : AbstractElement, IDICOMString
+    public sealed class AgeString : AbstractElement<string>
     {
-        public string Data { get; set; }
-
         public AgeString() { }
 
         public AgeString(Tag tag, string data)

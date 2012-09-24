@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EvilDICOM.Core.Interfaces;
+﻿using EvilDICOM.Core.Interfaces;
 using EvilDICOM.Core.Enums;
 using EvilDICOM.Core.Element;
-using EvilDICOM.Core;
 
 namespace EvilDICOM.Core.Extensions
 {
@@ -37,7 +32,7 @@ namespace EvilDICOM.Core.Extensions
                 case VR.Time:
                     return elem is Time;
                 case VR.DateTime:
-                    return elem is EvilDICOM.Core.Element.DateTime;
+                    return elem is DateTime;
                 case VR.AgeString:
                     return elem is AgeString;
                 case VR.IntegerString:
@@ -68,7 +63,8 @@ namespace EvilDICOM.Core.Extensions
                     return elem is Sequence;
                 case VR.Unknown:
                     return elem is Unknown;
-                default: return elem is AbstractElement;
+                default:
+                    return false;
             }
         }
     }

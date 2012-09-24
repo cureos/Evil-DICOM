@@ -7,7 +7,6 @@ using EvilDICOM.Core.Enums;
 using EvilDICOM.Core.Element;
 using EvilDICOM.Core.Extensions;
 using EvilDICOM.Core.Helpers;
-using System.Reflection;
 
 namespace EvilDICOM.Core
 {
@@ -183,7 +182,7 @@ namespace EvilDICOM.Core
 
         public void Remove(string tag)
         {
-            var removes = Elements.Where(el => el.Tag.CompleteID.Equals(tag));
+            var removes = Elements.Where(el => el.Tag.CompleteID.Equals(tag)).ToArray();
             foreach (var remove in removes) Elements.Remove(remove);
 
             foreach (var elem in Elements)
@@ -199,40 +198,50 @@ namespace EvilDICOM.Core
             }
         }
 
+        public void Remove(Tag tag)
+        {
+            Remove(tag.CompleteID);
+        }
+
         /// <summary>
         /// Replaces a current instance of the DICOM element in the DICOM object. If the object does not exist, this method
         /// exits. For this scenario, please use ReplaceOrAdd().
         /// </summary>
         /// <typeparam name="T">the type of the element being added (eg. UnsignedLong)</typeparam>
         /// <param name="element">the instance of the element</param>
-        public void Replace<T>(T element)
+        /// <remarks>If the element to replace is found but of a different type than the entered element, no replacement
+        /// will be performed due to type mismatch.</remarks>
+        public void Replace<T>(T element) where T : class, IDICOMElement
         {
-            IDICOMElement elementCast = element as IDICOMElement;
-            T toReplace = (T)FindFirst(elementCast.Tag);
-            if (toReplace != null)
-            {
-                object newData = element.GetType().GetProperty("Data").GetValue(element, null);
-                toReplace.GetType().InvokeMember("Data", BindingFlags.SetProperty, null, toReplace, new object[] { newData });
-            }
+            var toReplace = FindFirst(element.Tag) as T;
+            if (toReplace == null) return;
+            toReplace.SetData(element.GetData());
         }
+
         /// <summary>
         /// Replaces a current instance of the DICOM element in the DICOM object. If the object does not exist, this method 
         /// will add it to the object.
         /// </summary>
         /// <typeparam name="T">the type of the element being added (eg. UnsignedLong)</typeparam>
         /// <param name="element">the instance of the element</param>
-        public void ReplaceOrAdd<T>(T element)
+        public void ReplaceOrAdd<T>(T element) where T : class, IDICOMElement
         {
-            IDICOMElement elementCast = element as IDICOMElement;
-            T toReplace = (T)FindFirst(elementCast.Tag);
+            var toReplace = FindFirst(element.Tag);
             if (toReplace != null)
             {
-                object newData = element.GetType().GetProperty("Data").GetValue(element, null);
-                toReplace.GetType().InvokeMember("Data", BindingFlags.SetProperty, null, toReplace, new object[] { newData });
+                if (toReplace is T)
+                {
+                    toReplace.SetData(element.GetData());
+                }
+                else
+                {
+                    Remove(element.Tag);
+                    Add(element);
+                }
             }
             else
             {
-                Add(elementCast);
+                Add(element);
             }
         }
     }

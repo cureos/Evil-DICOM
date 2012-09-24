@@ -7,9 +7,9 @@ using EvilDICOM.Core.IO.Data;
 
 namespace EvilDICOM.Core.Element
 {
-    public class ShortString : AbstractElement, IDICOMString
+    public sealed class ShortString : AbstractElement<string>
     {
-        public string Data
+        public override string Data
         {
             get { return _data; }
             set { _data = DataRestriction.EnforceLengthRestriction(16, value); }

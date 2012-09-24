@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EvilDICOM.Core.Interfaces;
-using EvilDICOM.Core.IO.Data;
+﻿using EvilDICOM.Core.IO.Data;
 
 namespace EvilDICOM.Core.Element
 {
-    public class DecimalString : AbstractElement
+    public sealed class DecimalString : AbstractElement<double[]>
     {
-        public double[] Data { get; set; }
-
         public DecimalString() { }
 
         public DecimalString(Tag tag, string data)

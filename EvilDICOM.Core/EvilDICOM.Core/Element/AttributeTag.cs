@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EvilDICOM.Core.Interfaces;
-using EvilDICOM.Core.IO.Data;
+﻿using EvilDICOM.Core.IO.Data;
 
 namespace EvilDICOM.Core.Element
 {
-    public class AttributeTag : AbstractElement
+    public sealed class AttributeTag : AbstractElement<Tag>
     {
-        public Tag Data { get; set; }
-
         public AttributeTag() { }
 
         public AttributeTag(Tag tag, Tag data)
@@ -24,13 +17,13 @@ namespace EvilDICOM.Core.Element
     {
         public Tag(string group, string element)
         {
-            this.Group = DataRestriction.EnforceLengthRestriction(4, group);
-            this.Element = DataRestriction.EnforceLengthRestriction(4, element);
+            Group = DataRestriction.EnforceLengthRestriction(4, group);
+            Element = DataRestriction.EnforceLengthRestriction(4, element);
         }
 
         public Tag(string completeID)
         {
-            this.CompleteID = DataRestriction.EnforceLengthRestriction(8, completeID);
+            CompleteID = DataRestriction.EnforceLengthRestriction(8, completeID);
         }
 
         public string Group { get; set; }
@@ -43,7 +36,7 @@ namespace EvilDICOM.Core.Element
             }
             set
             {
-                string completeID = DataRestriction.EnforceLengthRestriction(8, value);
+                var completeID = DataRestriction.EnforceLengthRestriction(8, value);
                 Group = completeID.Substring(0, 4);
                 Element = completeID.Substring(4, 4);
             }

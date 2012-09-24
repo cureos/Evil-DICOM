@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EvilDICOM.Core.Interfaces;
-using EvilDICOM.Core.IO.Data;
+﻿using EvilDICOM.Core.IO.Data;
 using EvilDICOM.Core.Helpers;
 
 namespace EvilDICOM.Core.Element
 {
-    public class PersonName : AbstractElement, IDICOMString
+    public sealed class PersonName : AbstractElement<string>
     {
-        public string Data
+        public override string Data
         {
             get { return _data; }
             set { _data = DataRestriction.EnforceLengthRestriction(64, value); }
