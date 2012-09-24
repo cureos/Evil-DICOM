@@ -3,7 +3,7 @@ using EvilDICOM.Core.Enums;
 
 namespace EvilDICOM.Core.Element
 {
-    public class AbstractElement<T> : IDICOMElement
+    public abstract class AbstractElement<T> : IDICOMElement
     {
         public override string ToString()
         {
@@ -12,7 +12,7 @@ namespace EvilDICOM.Core.Element
 
         public Tag Tag { get; set; }
 
-        public VR VR { get; set; }
+        public abstract VR VR { get; }
 
         public object GetData()
         {

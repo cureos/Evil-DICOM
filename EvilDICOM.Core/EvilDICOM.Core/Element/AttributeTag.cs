@@ -1,4 +1,5 @@
-﻿using EvilDICOM.Core.IO.Data;
+﻿using EvilDICOM.Core.Enums;
+using EvilDICOM.Core.IO.Data;
 
 namespace EvilDICOM.Core.Element
 {
@@ -11,6 +12,15 @@ namespace EvilDICOM.Core.Element
             Tag = tag;
             Data = data;
         }
+
+        #region Overrides of AbstractElement<Tag>
+
+        public override VR VR
+        {
+            get { return VR.AttributeTag; }
+        }
+
+        #endregion
     }
 
     public class Tag

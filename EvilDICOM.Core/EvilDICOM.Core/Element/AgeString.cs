@@ -1,4 +1,5 @@
-﻿using EvilDICOM.Core.IO.Data;
+﻿using EvilDICOM.Core.Enums;
+using EvilDICOM.Core.IO.Data;
 
 namespace EvilDICOM.Core.Element
 {
@@ -24,6 +25,14 @@ namespace EvilDICOM.Core.Element
             }
         }
 
+        #region Overrides of AbstractElement<string>
+
+        public override VR VR
+        {
+            get { return VR.AgeString; }
+        }
+
+        #endregion
     }
 
     public class Age

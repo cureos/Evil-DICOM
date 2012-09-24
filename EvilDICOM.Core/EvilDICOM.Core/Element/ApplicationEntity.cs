@@ -1,4 +1,6 @@
-﻿namespace EvilDICOM.Core.Element
+﻿using EvilDICOM.Core.Enums;
+
+namespace EvilDICOM.Core.Element
 {
     public sealed class ApplicationEntity : AbstractElement<string>
     {
@@ -9,5 +11,14 @@
             Tag = tag;
             Data = data;
         }
+
+        #region Overrides of AbstractElement<string>
+
+        public override VR VR
+        {
+            get { return VR.ApplicationEntity; }
+        }
+
+        #endregion
     }
 }

@@ -7,7 +7,7 @@ namespace EvilDICOM.Core.Interfaces
     {
         Tag Tag { get; set; }
 
-        VR VR { get; set; }
+        VR VR { get; }
 
         object GetData();
 

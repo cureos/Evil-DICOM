@@ -43,7 +43,7 @@ namespace EvilDICOM.Core.Tests
         }
 
         [Test]
-        public void ReplaceOrAdd_ElementExistButDifferentType_ValueUnchanged()
+        public void ReplaceOrAdd_ElementExistButDifferentType_ValueReplacedWithNewType()
         {
             using (var stream = File.OpenRead("Data/ct.9.dcm"))
             {
@@ -51,13 +51,19 @@ namespace EvilDICOM.Core.Tests
 
                 var tag = TagHelper.PATIENT_NAME;
                 var dicomFile = DICOMFileReader.Read(stream);
-                var before = dicomFile.FindFirst(tag).GetData() as string;
-                Assert.AreNotEqual(expected, before);
+                var oldElem = dicomFile.FindFirst(tag);
+                var oldData = oldElem.GetData() as string;
+
+                Assert.IsNotInstanceOf<CodeString>(oldElem);
+                Assert.AreNotEqual(expected, oldData);
 
                 var patientIdElem = new CodeString(tag, expected);
                 dicomFile.ReplaceOrAdd(patientIdElem);
 
-                var actual = dicomFile.FindFirst(tag).GetData() as string;
+                var newElem = dicomFile.FindFirst(tag);
+                Assert.IsInstanceOf<CodeString>(newElem);
+
+                var actual = newElem.GetData() as string;
                 Assert.AreEqual(expected, actual);
             }
         }

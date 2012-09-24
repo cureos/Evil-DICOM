@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EvilDICOM.Core.Interfaces;
-using EvilDICOM.Core.IO.Data;
+﻿using EvilDICOM.Core.Enums;
 
 namespace EvilDICOM.Core.Element
 {
@@ -16,5 +11,14 @@ namespace EvilDICOM.Core.Element
             Tag = tag;
             Data = data;
         }
+
+        #region Overrides of AbstractElement<double?>
+
+        public override VR VR
+        {
+            get { return VR.FloatingPointDouble; }
+        }
+
+        #endregion
     }
 }

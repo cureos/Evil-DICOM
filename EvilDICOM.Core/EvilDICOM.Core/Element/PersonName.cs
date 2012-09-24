@@ -1,10 +1,16 @@
-﻿using EvilDICOM.Core.IO.Data;
+﻿using EvilDICOM.Core.Enums;
+using EvilDICOM.Core.IO.Data;
 using EvilDICOM.Core.Helpers;
 
 namespace EvilDICOM.Core.Element
 {
     public sealed class PersonName : AbstractElement<string>
     {
+        public override VR VR
+        {
+            get { return VR.PersonName; }
+        }
+
         public override string Data
         {
             get { return _data; }
