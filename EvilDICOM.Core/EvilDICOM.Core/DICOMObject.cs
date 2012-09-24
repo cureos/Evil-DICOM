@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using EvilDICOM.Core.Interfaces;
 using EvilDICOM.Core.Enums;
 using EvilDICOM.Core.Element;
-using EvilDICOM.Core.Dictionaries;
 using EvilDICOM.Core.Extensions;
-using EvilDICOM.Core.IO.Data;
 using EvilDICOM.Core.Helpers;
 using System.Reflection;
 
@@ -160,9 +157,7 @@ namespace EvilDICOM.Core
         /// <returns>a list of all elements that meet the search criteria</returns>
         public List<IDICOMElement> FindAll(Tag[] descendingTags)
         {
-            List<string> stringList = new List<string>();
-            descendingTags.ToList().ForEach(t => stringList.Add(t.CompleteID));
-            return FindAll(stringList.ToArray());
+            return FindAll(descendingTags.Select(t => t.CompleteID).ToArray());
         }
 
         /// <summary>
@@ -188,8 +183,10 @@ namespace EvilDICOM.Core
 
         public void Remove(string tag)
         {
-            Elements.RemoveAll(el => el.Tag.CompleteID == tag);
-            foreach (IDICOMElement elem in Elements)
+            var removes = Elements.Where(el => el.Tag.CompleteID.Equals(tag));
+            foreach (var remove in removes) Elements.Remove(remove);
+
+            foreach (var elem in Elements)
             {
                 if (elem is Sequence)
                 {

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
+
+#if PORTABLE
+using Console = System.Diagnostics.Debug;
+#endif
 
 namespace EvilDICOM.Core.IO.Reading
 {

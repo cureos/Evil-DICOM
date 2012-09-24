@@ -42,7 +42,7 @@ namespace EvilDICOM.Core.IO.Data
                 {
                     return System.DateTime.ParseExact(data, "yyyyMMdd", null);
                 }
-                catch (Exception e)
+                catch
                 {
                     return null;
                 }

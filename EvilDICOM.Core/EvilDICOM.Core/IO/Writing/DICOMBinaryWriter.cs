@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 
@@ -8,8 +6,9 @@ namespace EvilDICOM.Core.IO.Writing
 {
     public class DICOMBinaryWriter : IDisposable
     {
-        private BinaryWriter _writer;
+        private readonly BinaryWriter _writer;
 
+#if !PORTABLE
         /// <summary>
         /// Constructs a new writer from a file path.
         /// </summary>
@@ -20,10 +19,11 @@ namespace EvilDICOM.Core.IO.Writing
                 File.Open(filePath, FileMode.Create),
                 new UTF8Encoding());
         }
+#endif
 
         public DICOMBinaryWriter(Stream stream)
         {
-            _writer = new BinaryWriter(stream,new UTF8Encoding());
+            _writer = new BinaryWriter(stream, new UTF8Encoding());
         }
 
         public void Write(byte b)
@@ -43,7 +43,7 @@ namespace EvilDICOM.Core.IO.Writing
 
         public void Write(string chars)
         {
-            char[] asCharArray = chars.ToCharArray(0, chars.Length);
+            char[] asCharArray = chars.ToCharArray();
             Write(asCharArray);
         }
 
@@ -57,7 +57,7 @@ namespace EvilDICOM.Core.IO.Writing
 
         public void Dispose()
         {
-            _writer.Close();
+            _writer.Dispose();
         }
     }
 }

@@ -14,6 +14,18 @@ namespace EvilDICOM.Core.IO.Reading
 
         //Constructor for inherited classes
         protected DICOMBinaryReader() { }
+
+#if PORTABLE
+        /// <summary>
+        /// Constructs a new reader from a stream.
+        /// </summary>
+        /// <param name="stream">Stream to be read</param>
+        public DICOMBinaryReader(Stream stream)
+        {
+            _binaryReader = new BinaryReader(stream,
+                new System.Text.UTF8Encoding());
+        }
+#else
         /// <summary>
         /// Constructs a new reader from a file path.
         /// </summary>
@@ -24,6 +36,7 @@ namespace EvilDICOM.Core.IO.Reading
                 new FileStream(filePath, FileMode.Open, FileAccess.Read),
                 new System.Text.UTF8Encoding());
         }
+#endif
 
         /// <summary>
         /// Constructs a new reader from a byte array.
@@ -111,7 +124,7 @@ namespace EvilDICOM.Core.IO.Reading
 
         public void Dispose()
         {
-            _binaryReader.Close();
+            _binaryReader.Dispose();
         }
 
         /// <summary>

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using EvilDICOM.Core.IO.Writing;
-using EvilDICOM.Core.Interfaces;
-using EvilDICOM.Core.Helpers;
-using EvilDICOM.Core.Element;
+﻿using EvilDICOM.Core.Helpers;
 
 namespace EvilDICOM.Core.IO.Writing
 {
     public class DICOMFileWriter
     {
+#if PORTABLE
+        public static void WriteLittleEndian(System.IO.Stream filePath, DICOMWriteSettings settings, DICOMObject toWrite)
+#else
         public static void WriteLittleEndian(string filePath, DICOMWriteSettings settings, DICOMObject toWrite)
+#endif
         {
             using (DICOMBinaryWriter dw = new DICOMBinaryWriter(filePath))
             {
@@ -22,7 +18,11 @@ namespace EvilDICOM.Core.IO.Writing
             }
         }
 
+#if PORTABLE
+        public static void WriteLittleEndian(System.IO.Stream filePath, DICOMObject toWrite)
+#else
         public static void WriteLittleEndian(string filePath, DICOMObject toWrite)
+#endif
         {
             WriteLittleEndian(filePath, DICOMWriteSettings.Default(), toWrite);
         }

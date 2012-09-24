@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using EvilDICOM.Core.Enums;
+
+#if PORTABLE
+using Console = System.Diagnostics.Debug;
+#endif
 
 namespace EvilDICOM.Core.IO.Data
 {
@@ -12,9 +13,9 @@ namespace EvilDICOM.Core.IO.Data
         {
             if (data.Length > lengthLimit)
             {
-                Console.Write(
-                    string.Format("Not DICOM compliant. Attempted data input of {0} characters. Data size is limited to {1} characters. Read anyway.", data.Length, lengthLimit)
-                    );
+                Console.WriteLine(
+                    "Not DICOM compliant. Attempted data input of {0} characters. Data size is limited to {1} characters. Read anyway.",
+                    data.Length, lengthLimit);
                 return data;
             }
             else

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using EvilDICOM.Core.Enums;
 using System.IO;
@@ -35,7 +36,7 @@ namespace EvilDICOM.Core.Dictionaries
             {
                 return _dictionary[tag.CompleteID];
             }
-            catch (Exception e)
+            catch
             {
                 return VR.Null;
             }
@@ -47,7 +48,7 @@ namespace EvilDICOM.Core.Dictionaries
         private void Initialize()
         {
             Stream s = new MemoryStream(Encoding.UTF8.GetBytes(Properties.Resources.DICOMDictionary));
-            XmlTextReader reader = new XmlTextReader(s);
+            XmlReader reader = XmlReader.Create(s);
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Element && reader.Name.Equals("element"))

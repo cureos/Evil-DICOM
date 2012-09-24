@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using EvilDICOM.Core.Interfaces;
-using System.IO;
 using EvilDICOM.Core.Helpers;
 using EvilDICOM.Core.Enums;
 
@@ -21,7 +18,11 @@ namespace EvilDICOM.Core.IO.Reading
         /// </summary>
         /// <param name="filePath">the path to the DICOM file</param>
         /// <returns>a DICOM object containing all elements</returns>
+#if PORTABLE
+        public static DICOMObject Read(System.IO.Stream filePath)
+#else
         public static DICOMObject Read(string filePath)
+#endif
         {
             TransferSyntax syntax;
             List<IDICOMElement> elements;
@@ -58,7 +59,11 @@ namespace EvilDICOM.Core.IO.Reading
         /// </summary>
         /// <param name="filePath">the path to the DICOM file</param>
         /// <returns>a DICOM object containing the metadata elements</returns>
+#if PORTABLE
+        public static DICOMObject ReadFileMetadata(System.IO.Stream filePath)
+#else
         public static DICOMObject ReadFileMetadata(string filePath)
+#endif
         {
             TransferSyntax syntax;
             List<IDICOMElement> metaElements;

@@ -29,7 +29,7 @@ namespace EvilDICOM.Core.Dictionaries
         private void Initalize()
         {
             Stream s = new MemoryStream(Encoding.UTF8.GetBytes(Properties.Resources.DICOMDictionary));
-            XmlTextReader reader = new XmlTextReader(s);
+            XmlReader reader = XmlReader.Create(s);
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Element && reader.Name.Equals("element"))
