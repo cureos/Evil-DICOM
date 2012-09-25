@@ -14,7 +14,7 @@ namespace EvilDICOM.Core.IO.Reading
         /// <summary>
         /// A dictionary containing a map of VR type in relation to tag id
         /// </summary>
-        static TagVRDictionary _tagDictionary = new TagVRDictionary();
+        static readonly TagVRDictionary _tagDictionary = new TagVRDictionary();
 
         /// <summary>
         /// Reads and returns the next DICOM element starting at the current location in the DICOM binary reader
@@ -114,14 +114,14 @@ namespace EvilDICOM.Core.IO.Reading
             List<IDICOMElement> elements;
             switch (syntax)
             {
-                case TransferSyntax.EXPLICIT_VR_LITTLE_ENDIAN:
-                    elements = ReadAllElementsExplicitLittleEndian(dr);
+                case TransferSyntax.IMPLICIT_VR_LITTLE_ENDIAN:
+                    elements = ReadAllElementsImplicitLittleEndian(dr);
                     break;
                 case TransferSyntax.EXPLICIT_VR_BIG_ENDIAN:
                     elements = ReadAllElementsExplicitBigEndian(dr);
                     break;
                 default:
-                    elements = ReadAllElementsImplicitLittleEndian(dr);
+                    elements = ReadAllElementsExplicitLittleEndian(dr);
                     break;
             }
             return elements;
