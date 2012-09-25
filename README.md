@@ -15,7 +15,7 @@ Class Library_ project. The PCL library is completely applicable on the followin
 * .NET Framework version 4 and higher
 * Silverlight version 4 and higher
 * Windows Phone version 4 and higher
-* Windows Store Applications
+* Windows Store Applications (a.k.a. Metro)
 
 There is also a corresponding _Monotouch_ class library denoted _MT.EvilDicom.Core_ with the same contents 
 and API as the portable class library.
