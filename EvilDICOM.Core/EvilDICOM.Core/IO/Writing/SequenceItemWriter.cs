@@ -12,7 +12,7 @@ namespace EvilDICOM.Core.IO.Writing
     public class SequenceItemWriter
     {
         private static byte[] _endOfSequenceItem_LE = new byte[] { 0xFE, 0xFF, 0x0D, 0xE0, 0x00, 0x00, 0x00, 0x00 };
-        private static byte[] _endOfSequenceItem_BE = new byte[] { 0xFF, 0xFE, 0xE0, 0x0D, 0x00, 0x00, 0x00, 0x00 };
+        //private static byte[] _endOfSequenceItem_BE = new byte[] { 0xFF, 0xFE, 0xE0, 0x0D, 0x00, 0x00, 0x00, 0x00 };
 
         public static void WriteItemsLittleEndian(DICOMBinaryWriter dw, DICOMWriteSettings settings, List<DICOMObject> items)
         {

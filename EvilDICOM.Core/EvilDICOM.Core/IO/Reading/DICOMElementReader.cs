@@ -61,7 +61,7 @@ namespace EvilDICOM.Core.IO.Reading
         #region SKIPPERS
         public static void SkipElementExplicitLittleEndian(DICOMBinaryReader dr)
         {
-            Tag tag = TagReader.ReadLittleEndian(dr);
+            TagReader.ReadLittleEndian(dr);
             VR vr = VRReader.Read(dr);
             int length = LengthReader.ReadLittleEndian(vr, dr);
             if (length != -1)
@@ -77,7 +77,7 @@ namespace EvilDICOM.Core.IO.Reading
 
         public static void SkipElementImplicitLittleEndian(DICOMBinaryReader dr)
         {
-            Tag tag = TagReader.ReadLittleEndian(dr);
+            TagReader.ReadLittleEndian(dr);
             int length = LengthReader.ReadLittleEndian(VR.Null, dr);
             if (length != -1)
             {
@@ -92,7 +92,7 @@ namespace EvilDICOM.Core.IO.Reading
 
         public static void SkipElementExplicitBigEndian(DICOMBinaryReader dr)
         {
-            Tag tag = TagReader.ReadBigEndian(dr);
+            TagReader.ReadBigEndian(dr);
             VR vr = VRReader.Read(dr);
             int length = LengthReader.ReadBigEndian(vr, dr);
             if (length != -1)
