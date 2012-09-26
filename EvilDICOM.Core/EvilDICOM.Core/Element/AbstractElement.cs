@@ -5,6 +5,8 @@ namespace EvilDICOM.Core.Element
 {
     public abstract class AbstractElement<T> : IDICOMElement
     {
+        protected T _data;
+
         public override string ToString()
         {
             return string.Format("VR = {0}, Tag = {1},{2}", VR, Tag.Group, Tag.Element);
@@ -24,6 +26,10 @@ namespace EvilDICOM.Core.Element
             Data = (T)data;
         }
 
-        public virtual T Data { get; set; }
+        public virtual T Data
+        {
+            get { return _data; }
+            set { _data = value; }
+        }
     }
 }

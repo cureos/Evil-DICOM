@@ -42,7 +42,5 @@ namespace EvilDICOM.Core.Element
             get { return PersonNameHelper.GetLastName(Data); }
             set { Data = PersonNameHelper.SetLastName(Data, value); }
         }
-
-        string _data;
     }
 }
