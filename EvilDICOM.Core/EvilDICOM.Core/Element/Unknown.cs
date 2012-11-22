@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,3 +29,26 @@ namespace EvilDICOM.Core.Element
         #endregion
     }
 }
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using EvilDICOM.Core.Interfaces;
+using EvilDICOM.Core.IO.Data;
+
+namespace EvilDICOM.Core.Element
+{
+    public class Unknown : AbstractElement<byte[]>
+    {
+        public Unknown() { }
+
+        public Unknown(Tag tag, byte[] data)
+        {
+            Tag = tag;
+            Data = data;
+            VR = Enums.VR.Unknown;
+        }
+    }
+}
+>>>>>>> upstream/master
