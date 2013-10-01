@@ -42,7 +42,7 @@ namespace EvilDICOM.Core.IO.Reading
         /// </summary>
         /// <param name="count">the number of bytes to be read</param>
         /// <returns>the read bytes</returns>
-        public byte[] ReadBytes(int count)
+        public virtual byte[] ReadBytes(int count)
         {
             byte[] buffer = new byte[count];
             _binaryReader.Read(buffer, 0, count);
@@ -59,7 +59,7 @@ namespace EvilDICOM.Core.IO.Reading
             return ReadBytes(count);
         }
 
-        public byte[] Peek(int count)
+        public virtual byte[] Peek(int count)
         {
             byte[] buffer = this.ReadBytes(count);
             this.StreamPosition -= count;
@@ -105,7 +105,7 @@ namespace EvilDICOM.Core.IO.Reading
             _binaryReader.Read(buffer, index, count);
         }
 
-        public DICOMBinaryReader Skip(int count)
+        public virtual DICOMBinaryReader Skip(int count)
         {
             this.ReadBytes(count);
             return this;
@@ -143,7 +143,7 @@ namespace EvilDICOM.Core.IO.Reading
         /// <summary>
         /// Returns the current position of the byte stream
         /// </summary>
-        public long StreamPosition
+        public virtual long StreamPosition
         {
             get { return _binaryReader.BaseStream.Position; }
             set
@@ -160,7 +160,7 @@ namespace EvilDICOM.Core.IO.Reading
             get { return _binaryReader.BaseStream.Length; }
         }
 
-        public void Reset()
+        public virtual void Reset()
         {
             _binaryReader.BaseStream.Position = 0;
         }

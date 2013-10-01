@@ -119,6 +119,7 @@
     <Compile Include="IO\Reading\DICOMFileReader.cs" />
     <Compile Include="IO\Reading\DICOMObjectReader.cs" />
     <Compile Include="IO\Reading\DICOMPreambleReader.cs" />
+    <Compile Include="Interfaces\IDICOMNetworkBinaryReader.cs" />
     <Compile Include="IO\Reading\LengthReader.cs" />
     <Compile Include="IO\Reading\SequenceItemReader.cs" />
     <Compile Include="IO\Reading\SequenceReader.cs" />

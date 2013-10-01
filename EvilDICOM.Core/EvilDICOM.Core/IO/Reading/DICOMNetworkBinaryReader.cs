@@ -5,10 +5,11 @@ using System.Text;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading.Tasks;
+using EvilDICOM.Core.Interfaces;
 
 namespace EvilDICOM.Core.IO.Reading
 {
-    public class DICOMNetworkBinaryReader : DICOMBinaryReader
+    public class DICOMNetworkBinaryReader : DICOMBinaryReader, IDICOMNetworkBinaryReader
     {
         #region PRIVATE
         Socket _socket;
@@ -26,14 +27,14 @@ namespace EvilDICOM.Core.IO.Reading
                 new System.Text.UTF8Encoding());
         }
 
-        public new byte[] Peek(int count)
+        public override byte[] Peek(int count)
         {
             byte[] buffer = new byte[count];
             _socket.Receive(buffer, SocketFlags.Peek);
             return buffer;
         }
 
-        public new DICOMNetworkBinaryReader Skip(int count)
+        public override DICOMBinaryReader Skip(int count)
         {
             ReadBytes(count);
             return this;
@@ -44,7 +45,7 @@ namespace EvilDICOM.Core.IO.Reading
         /// </summary>
         /// <param name="count">the number of bytes to be read</param>
         /// <returns>the read bytes</returns>
-        public new byte[] ReadBytes(int count)
+        public override byte[] ReadBytes(int count)
         {
             byte[] bytes = new byte[0];
             using (MemoryStream messageBytes = new MemoryStream())
@@ -78,7 +79,7 @@ namespace EvilDICOM.Core.IO.Reading
         /// </summary>
         /// <param name="count">the number of bytes to be read</param>
         /// <returns>the read bytes</returns>
-        public new byte[] ReadBytesAsync(int count)
+        public byte[] ReadBytesAsync(int count)
         {
             List<byte> bytes= new List<byte>();
             var myReadBuffer = new byte[1024];
@@ -111,7 +112,7 @@ namespace EvilDICOM.Core.IO.Reading
             return bytes.ToArray();
         }
 
-        public new long StreamPosition
+        public override long StreamPosition
         {
             get
             {
@@ -124,7 +125,7 @@ namespace EvilDICOM.Core.IO.Reading
 
         }
 
-        public new void Reset()
+        public override void Reset()
         {
             throw new Exception("Unable to reset NetworkStream.");
         }
