@@ -58,14 +58,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="DataTests.cs" />
     <Compile Include="DICOMWriteTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EvilDICOM.Core\EvilDICOM.Core.csproj">
-      <Project>{1afe008b-ccac-45f5-828e-45908adaf91f}</Project>
-      <Name>EvilDICOM.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -80,6 +73,12 @@
     <None Include="Resources\implicitLittleEndian.dcm" />
     <None Include="Resources\MultpleFL.dcm" />
     <None Include="Resources\RLELossless.dcm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EvilDICOM.Core\EvilDICOM.Core.csproj">
+      <Project>{9496dd10-147d-4522-9a80-c3977e2ba117}</Project>
+      <Name>EvilDICOM.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

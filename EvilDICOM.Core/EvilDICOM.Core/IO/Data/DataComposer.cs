@@ -136,7 +136,7 @@ namespace EvilDICOM.Core.IO.Data
         {
             if (!string.IsNullOrEmpty(s))
             {
-                return new ASCIIEncoding().GetBytes(s);
+                return new UTF8Encoding().GetBytes(s);
             }
             else
             {

@@ -94,7 +94,7 @@ namespace EvilDICOM.Core
         {
             if (MultipicityValue.Count > 1)
             {
-                return string.Join(" | ", MultipicityValue.ToArray());
+                return string.Join(" | ", MultipicityValue.Select(v => v.ToString()).ToArray());
             }
             else
             {

@@ -160,7 +160,7 @@ namespace EvilDICOM.Core
         public List<T> FindAll<T>()
         {
             Type t = typeof(T);
-            return AllElements.Where(el => el is T).Select(el => (T)Convert.ChangeType(el, t)).ToList();
+            return AllElements.Where(el => el is T).Select(el => (T)Convert.ChangeType(el, t, System.Globalization.CultureInfo.InvariantCulture)).ToList();
         }
 
         /// <summary>
@@ -226,9 +226,7 @@ namespace EvilDICOM.Core
         /// <returns>a list of all elements that meet the search criteria</returns>
         public List<IDICOMElement> FindAll(Tag[] descendingTags)
         {
-            List<string> stringList = new List<string>();
-            descendingTags.ToList().ForEach(t => stringList.Add(t.CompleteID));
-            return FindAll(stringList.ToArray());
+            return FindAll(descendingTags.Select(t => t.CompleteID).ToArray());
         }
 
         /// <summary>
@@ -258,7 +256,8 @@ namespace EvilDICOM.Core
         /// <param name="tag">the tag string in the form of GGGGEEEE to be removed</param>
         public void Remove(string tag)
         {
-            Elements.RemoveAll(el => el.Tag.CompleteID == tag);
+	        var removables = Elements.Where(el => el.Tag.CompleteID == tag).ToArray();
+	        foreach (var el in removables) Elements.Remove(el);
             foreach (IDICOMElement elem in Elements)
             {
                 if (elem is Sequence)

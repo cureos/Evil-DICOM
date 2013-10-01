@@ -13,9 +13,9 @@ namespace EvilDICOM.Core.IO.Writing
 {
     public class DICOMFileWriter
     {
-        public static void Write(string filePath, DICOMWriteSettings settings, DICOMObject toWrite)
+        public static void Write(Stream stream, DICOMWriteSettings settings, DICOMObject toWrite)
         {
-            using (DICOMBinaryWriter dw = new DICOMBinaryWriter(filePath))
+            using (DICOMBinaryWriter dw = new DICOMBinaryWriter(stream))
             {
                 DICOMPreambleWriter.Write(dw);
                 TransferSyntaxHelper.SetSyntax(toWrite, settings.TransferSyntax);
@@ -23,7 +23,7 @@ namespace EvilDICOM.Core.IO.Writing
             }
         }
 
-        public static void WriteLittleEndian(string filePath, DICOMObject toWrite)
+        public static void WriteLittleEndian(Stream stream, DICOMObject toWrite)
         {
             var settings = DICOMWriteSettings.Default();
             var currentUID = toWrite.FindFirst(TagHelper.TRANSFER_SYNTAX_UID);
@@ -35,7 +35,7 @@ namespace EvilDICOM.Core.IO.Writing
                 settings.TransferSyntax = TransferSyntax.EXPLICIT_VR_LITTLE_ENDIAN;
             }
 
-            Write(filePath, settings, toWrite);
+            Write(stream, settings, toWrite);
         }
-    }
+	}
 }

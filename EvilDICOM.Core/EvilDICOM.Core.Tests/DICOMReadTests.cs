@@ -16,7 +16,7 @@ namespace EvilDICOM.Core.Tests
             var elemCount = dcm.AllElements.Count;
             Assert.AreEqual(elemCount, 72);
         }
-
+/*
         [TestMethod]
         public void ReadMultipleFL()
         {
@@ -25,7 +25,7 @@ namespace EvilDICOM.Core.Tests
             var el = vmGreaterThan1[0] as AbstractElement<float>;
             Assert.IsTrue(el.Data.MultipicityValue.Count > 1);
         }
-
+*/
         [TestMethod]
         public void ReadImplicitLittleEndian()
         {
@@ -53,7 +53,9 @@ namespace EvilDICOM.Core.Tests
         [TestMethod]
         public void Read()
         {
-            var dcm = DICOMFileReader.Read(@"C:\Users\Rex\Desktop\BASSIN - 8577\IM-0001-0001.dcm");
+	        var path = @"temp.dcm";
+			System.IO.File.WriteAllBytes(path, Resources.implicitLittleEndian);
+			var dcm = DICOMFileReader.Read(System.IO.File.OpenRead(path));
             var elemCount = dcm.AllElements.Count;
         }
 

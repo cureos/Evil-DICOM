@@ -23,7 +23,7 @@ namespace EvilDICOM.Core.IO.Reading
             _socket = socket;
             _stream = stream;
             _binaryReader = new BinaryReader(stream,
-                new System.Text.ASCIIEncoding());
+                new System.Text.UTF8Encoding());
         }
 
         public new byte[] Peek(int count)

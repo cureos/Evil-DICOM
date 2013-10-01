@@ -15,7 +15,7 @@ namespace EvilDICOM.Core.Tests
             var dcm = DICOMFileReader.Read(Resources.explicitLittleEndian);
 
             //Writing a file out
-            DICOMFileWriter.WriteLittleEndian("myPath.dcm", dcm);
+            DICOMFileWriter.WriteLittleEndian(System.IO.File.OpenWrite("myPath.dcm"), dcm);
         }
     }
 }

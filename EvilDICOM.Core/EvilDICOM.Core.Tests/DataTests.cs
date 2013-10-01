@@ -52,7 +52,4 @@ namespace EvilDICOM.Core.Tests
              var z = xyz[2];
         }
     }
-
-   
-    }
 }
