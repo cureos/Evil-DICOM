@@ -16,16 +16,16 @@ namespace EvilDICOM.Core.Tests
             var elemCount = dcm.AllElements.Count;
             Assert.AreEqual(elemCount, 72);
         }
-/*
+
         [TestMethod]
         public void ReadMultipleFL()
         {
             var dcm = DICOMFileReader.Read(Resources.MultpleFL);
             var vmGreaterThan1 = dcm.FindAll("300A030A");
             var el = vmGreaterThan1[0] as AbstractElement<float>;
-            Assert.IsTrue(el.Data.MultipicityValue.Count > 1);
+            Assert.IsTrue(el.Data_.Count > 1);
         }
-*/
+
         [TestMethod]
         public void ReadImplicitLittleEndian()
         {

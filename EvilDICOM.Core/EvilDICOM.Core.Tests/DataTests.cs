@@ -30,7 +30,7 @@ namespace EvilDICOM.Core.Tests
 
             //Generic casting
             var genericName = dcm.FindFirst(TagHelper.PATIENT_NAME) as AbstractElement<string>;
-            var genValue = genericName.Data.SingleValue; // returns Flinstone^Fred
+            var genValue = genericName.Data; // returns Flinstone^Fred
         }
 
          [TestMethod]
@@ -40,13 +40,13 @@ namespace EvilDICOM.Core.Tests
 
              //Patient's age is a single string value
              var age = dcm.FindFirst(TagHelper.PATIENT_AGE) as AgeString;
-             var actualAge = age.Data.SingleValue; // data of type T (in this case string)
+             var actualAge = age.Data; // data of type T (in this case string)
 
              //Patient position holds double values
              var position = dcm.FindFirst(TagHelper.PATIENT_POSITION) as AbstractElement<double>;
 
              //Patient position contains an array of double values {X,Y,Z}
-             var xyz = position.Data.MultipicityValue; //Data as List<T> (in this case List<double>)
+             var xyz = position.Data_; //Data as List<T> (in this case List<double>)
              var x = xyz[0];
              var y = xyz[1];
              var z = xyz[2];

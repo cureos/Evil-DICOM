@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using EvilDICOM.Core.Interfaces;
 
 namespace EvilDICOM.Core.IO.Reading
 {
     /// <summary>
     /// A wrapper for the Binary Reader class that is specific to DICOM.
     /// </summary>
-    public class DICOMBinaryReader : IDisposable
+    public class DICOMBinaryReader : IDICOMBinaryReader
     {
         #region PRIVATE
         protected BinaryReader _binaryReader;
@@ -66,11 +67,11 @@ namespace EvilDICOM.Core.IO.Reading
             return buffer;
         }
 
-        /// <summary>
-        /// Creates a new stream that is trimmed to the specification length.
-        /// </summary>
-        /// <param name="substreamLength">the number of bytes to include in the new stream (starting from the current position)</param>
-        public DICOMBinaryReader GetSubStream(int substreamLength)
+	    /// <summary>
+	    /// Creates a new stream that is trimmed to the specification length.
+	    /// </summary>
+	    /// <param name="substreamLength">the number of bytes to include in the new stream (starting from the current position)</param>
+	    public IDICOMBinaryReader GetSubStream(int substreamLength)
         {
             byte[] newStream = Take(substreamLength);
             return new DICOMBinaryReader(newStream);

@@ -1,6 +1,6 @@
 ﻿namespace EvilDICOM.Core.Interfaces
 {
-	public interface IDICOMNetworkBinaryReader
+	public interface IDICOMNetworkBinaryReader : IDICOMBinaryReader
 	{
 		/// <summary>
 		/// Reads the specified number of bytes. Will block until bytes are completely read (waiting on the network).
