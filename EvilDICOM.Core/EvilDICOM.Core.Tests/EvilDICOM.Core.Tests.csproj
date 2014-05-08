@@ -63,12 +63,6 @@
     <Compile Include="TagInfoTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EvilDICOM.Core\EvilDICOM.Core.csproj">
-      <Project>{1afe008b-ccac-45f5-828e-45908adaf91f}</Project>
-      <Name>EvilDICOM.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -81,9 +75,22 @@
     <None Include="Resources\explicitBigEndian.dcm" />
     <None Include="Resources\explicitLittleEndian.dcm" />
     <None Include="Resources\explicitLittleJPEG.dcm" />
+    <None Include="Data\IM-0001-0001.dcm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\implicitLittleEndian.dcm" />
     <None Include="Resources\MultpleFL.dcm" />
     <None Include="Resources\RLELossless.dcm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EvilDICOM.Core\EvilDICOM.Core.csproj">
+      <Project>{b99482bd-057b-4c7c-bb8e-b51d86b79b92}</Project>
+      <Name>EvilDICOM.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EvilDICOM.Desktop\EvilDICOM.Desktop.csproj">
+      <Project>{549f83e2-30a4-4b31-a258-667cf4d126ab}</Project>
+      <Name>EvilDICOM.Desktop</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

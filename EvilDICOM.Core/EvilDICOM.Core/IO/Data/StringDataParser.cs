@@ -64,7 +64,7 @@ namespace EvilDICOM.Core.IO.Data
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
+                    System.Diagnostics.Debug.WriteLine(e);
                 }
                 return dateTime;
             }
