@@ -53,9 +53,7 @@ namespace EvilDICOM.Core.Tests
         [TestMethod]
         public void Read()
         {
-	        var path = @"temp.dcm";
-			System.IO.File.WriteAllBytes(path, Resources.implicitLittleEndian);
-			var dcm = DICOMFileReader.Read(System.IO.File.OpenRead(path));
+            var dcm = DICOMFileReader.Read(@"C:\Users\Rex\Desktop\BASSIN - 8577\IM-0001-0001.dcm");
             var elemCount = dcm.AllElements.Count;
         }
 

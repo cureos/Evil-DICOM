@@ -28,7 +28,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -50,7 +50,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DataTests.cs" />
     <Compile Include="DICOMReadTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DICOMManipulateTests.cs" />
@@ -59,7 +58,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="DataTests.cs" />
     <Compile Include="DICOMWriteTests.cs" />
+    <Compile Include="TagInfoTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EvilDICOM.Core\EvilDICOM.Core.csproj">
+      <Project>{1afe008b-ccac-45f5-828e-45908adaf91f}</Project>
+      <Name>EvilDICOM.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -68,18 +75,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="OrderedTest1.orderedtest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\explicitBigEndian.dcm" />
     <None Include="Resources\explicitLittleEndian.dcm" />
     <None Include="Resources\explicitLittleJPEG.dcm" />
     <None Include="Resources\implicitLittleEndian.dcm" />
     <None Include="Resources\MultpleFL.dcm" />
     <None Include="Resources\RLELossless.dcm" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EvilDICOM.Core\EvilDICOM.Core.csproj">
-      <Project>{9496dd10-147d-4522-9a80-c3977e2ba117}</Project>
-      <Name>EvilDICOM.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

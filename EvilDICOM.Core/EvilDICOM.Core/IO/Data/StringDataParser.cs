@@ -57,7 +57,16 @@ namespace EvilDICOM.Core.IO.Data
             }
             else
             {
-                return System.DateTime.ParseExact(data, "yyyyMMddHHmmss.ffffff", null);
+                System.DateTime? dateTime = null;
+                try
+                {
+                    dateTime = System.DateTime.ParseExact(data, "yyyyMMddHHmmss.ffffff", null);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+                return dateTime;
             }
         }
 
@@ -120,6 +129,7 @@ namespace EvilDICOM.Core.IO.Data
             }
             else
             {
+                //throw new Exception("Time format is not DICOM 3.0 Compliant!");
                 return null;
             }
         }

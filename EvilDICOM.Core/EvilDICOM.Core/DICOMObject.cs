@@ -304,7 +304,7 @@ namespace EvilDICOM.Core
         {
             var toReplace = FindFirst(el.Tag);
             if (toReplace == null) return false;
-            toReplace.UntypedData = el.UntypedData;
+            toReplace.DData_ = el.DData_;
             return true;
 
         }
@@ -445,5 +445,10 @@ namespace EvilDICOM.Core
             }
         }
         #endregion
+
+        public override string ToString()
+        {
+            return string.Format("DICOM Obj : {0} Elements", Elements.Count);
+        }
     }
 }

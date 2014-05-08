@@ -5,11 +5,10 @@ using System.Text;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading.Tasks;
-using EvilDICOM.Core.Interfaces;
 
 namespace EvilDICOM.Core.IO.Reading
 {
-    public class DICOMNetworkBinaryReader : DICOMBinaryReader, IDICOMNetworkBinaryReader
+    public class DICOMNetworkBinaryReader : DICOMBinaryReader
     {
         #region PRIVATE
         Socket _socket;
@@ -24,17 +23,17 @@ namespace EvilDICOM.Core.IO.Reading
             _socket = socket;
             _stream = stream;
             _binaryReader = new BinaryReader(stream,
-                new System.Text.UTF8Encoding());
+                new System.Text.ASCIIEncoding());
         }
 
-        public override byte[] Peek(int count)
+        public new byte[] Peek(int count)
         {
             byte[] buffer = new byte[count];
             _socket.Receive(buffer, SocketFlags.Peek);
             return buffer;
         }
 
-        public override DICOMBinaryReader Skip(int count)
+        public new DICOMNetworkBinaryReader Skip(int count)
         {
             ReadBytes(count);
             return this;
@@ -45,7 +44,7 @@ namespace EvilDICOM.Core.IO.Reading
         /// </summary>
         /// <param name="count">the number of bytes to be read</param>
         /// <returns>the read bytes</returns>
-        public override byte[] ReadBytes(int count)
+        public new byte[] ReadBytes(int count)
         {
             byte[] bytes = new byte[0];
             using (MemoryStream messageBytes = new MemoryStream())
@@ -79,7 +78,7 @@ namespace EvilDICOM.Core.IO.Reading
         /// </summary>
         /// <param name="count">the number of bytes to be read</param>
         /// <returns>the read bytes</returns>
-        public byte[] ReadBytesAsync(int count)
+        public new byte[] ReadBytesAsync(int count)
         {
             List<byte> bytes= new List<byte>();
             var myReadBuffer = new byte[1024];
@@ -112,7 +111,7 @@ namespace EvilDICOM.Core.IO.Reading
             return bytes.ToArray();
         }
 
-        public override long StreamPosition
+        public new long StreamPosition
         {
             get
             {
@@ -125,7 +124,7 @@ namespace EvilDICOM.Core.IO.Reading
 
         }
 
-        public override void Reset()
+        public new void Reset()
         {
             throw new Exception("Unable to reset NetworkStream.");
         }
