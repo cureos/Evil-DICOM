@@ -50,12 +50,5 @@ namespace EvilDICOM.Core.Tests
             Assert.AreEqual(elemCount, 80);
         }
 
-        [TestMethod]
-        public void Read()
-        {
-            var dcm = DICOMFileReader.Read(System.IO.File.OpenRead(@"Data/IM-0001-0001.dcm"));
-            var elemCount = dcm.AllElements.Count;
-        }
-
     }
 }

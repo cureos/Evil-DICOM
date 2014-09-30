@@ -60,7 +60,7 @@
     </Compile>
     <Compile Include="DataTests.cs" />
     <Compile Include="DICOMWriteTests.cs" />
-    <Compile Include="TagInfoTests.cs" />
+    <Compile Include="TagTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

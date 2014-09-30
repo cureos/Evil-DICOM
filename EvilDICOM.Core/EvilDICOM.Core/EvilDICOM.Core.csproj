@@ -144,6 +144,9 @@
     <Compile Include="Modules\FileMetadata.cs" />
     <Compile Include="Modules\Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selection\DICOMSelector.cs" />
+    <Compile Include="Selection\ListExtensions.cs" />
+    <Compile Include="Selection\SequenceSelector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
