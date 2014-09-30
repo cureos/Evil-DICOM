@@ -16,6 +16,7 @@ The _EvilDicom.Core_ Visual Studio solution contains a _Portable Class Library_ 
 * Windows 8 and higher (f.k.a. Metro)
 * Silverlight version 5 and higher
 * Windows Phone (Silverlight) version 8 and higher
+* Windows Phone 8.1 and higher
 * Xamarin.Android
 * Xamarin.iOS
 
