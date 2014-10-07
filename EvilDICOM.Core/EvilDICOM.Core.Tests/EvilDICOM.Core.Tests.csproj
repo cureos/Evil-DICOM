@@ -87,10 +87,6 @@
       <Project>{b99482bd-057b-4c7c-bb8e-b51d86b79b92}</Project>
       <Name>EvilDICOM.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EvilDICOM.Desktop\EvilDICOM.Desktop.csproj">
-      <Project>{549f83e2-30a4-4b31-a258-667cf4d126ab}</Project>
-      <Name>EvilDICOM.Desktop</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

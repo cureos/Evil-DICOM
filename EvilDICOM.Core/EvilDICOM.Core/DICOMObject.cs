@@ -457,18 +457,18 @@ namespace EvilDICOM.Core
         #endregion
 
         #region IO
-        public static DICOMObject Open(string file)
+        public static DICOMObject Open(Stream stream)
         {
-            return DICOMFileReader.Read(file);
+            return DICOMFileReader.Read(stream);
         }
         public static DICOMObject Read(byte[] file)
         {
             return DICOMFileReader.Read(file);
         }
-        public void SaveAs(string file, DICOMWriteSettings settings = null)
+        public void SaveAs(Stream stream, DICOMWriteSettings settings = null)
         {
             settings = settings ?? DICOMWriteSettings.Default();
-            DICOMFileWriter.Write(file, settings, this);
+            DICOMFileWriter.Write(stream, settings, this);
         }
         #endregion
 
