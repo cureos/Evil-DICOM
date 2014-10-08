@@ -1,11 +1,14 @@
+Portable Evil DICOM
+===================
 
-Portable Evil DICOM - A DICOM library in C#
-===========================================
+Copyright (c) 2011-2014 Rex Cardan.
+Portable Class Library adaptation (c) 2012-2014 Anders Gustafsson, Cureos AB.
 
-Copyright (c) 2011-2014 Rex Cardan, Portable Class Library adaptation (c) 2012-2014 Anders Gustafsson, Cureos AB
+A simple to use C# library for reading and manipulating DICOM files. 
+Github is just the distro.
 
 This project is a Portable Class Library adapted fork of Rex Cardan's original [Evil DICOM](https://github.com/rexcardan/Evil-DICOM) library. 
-For general information and tutorials, see [here](http://evildicom.rexcardan.com/).
+For general information, online API and Getting Started tutorials, see [here](http://rexcardan.com/evildicom).
 
 Applicability
 -------------
