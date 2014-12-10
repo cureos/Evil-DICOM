@@ -66,6 +66,7 @@
     <Compile Include="Element\SignedLong.cs" />
     <Compile Include="Element\SignedShort.cs" />
     <Compile Include="Element\Time.cs" />
+    <Compile Include="Element\UniformResource.cs" />
     <Compile Include="Element\UniqueIdentifier.cs" />
     <Compile Include="Element\Unknown.cs" />
     <Compile Include="Element\UnlimitedText.cs" />
