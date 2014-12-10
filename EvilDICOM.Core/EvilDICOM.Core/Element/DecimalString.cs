@@ -12,6 +12,11 @@ namespace EvilDICOM.Core.Element
     /// </summary>
     public class DecimalString : AbstractElement<double>
     {
+        public DecimalString() : base()
+        {
+            VR = Enums.VR.DecimalString;
+        }
+
         public DecimalString(Tag tag, string data)
             : base(tag, StringDataParser.ParseDecimalString(data))
         {      
