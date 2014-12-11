@@ -11,7 +11,7 @@
     <RootNamespace>EvilDICOM.Core</RootNamespace>
     <AssemblyName>EvilDICOM.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile158</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile344</TargetFrameworkProfile>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DICOMData.cs" />
+    <Compile Include="DICOMForge.cs" />
     <Compile Include="DICOMObject.cs" />
     <Compile Include="DICOMObjectWrapper.cs" />
     <Compile Include="Dictionaries\TagDictionary.cs" />
@@ -79,6 +80,9 @@
     <Compile Include="Enums\ItemType.cs" />
     <Compile Include="Enums\NetworkState.cs" />
     <Compile Include="Enums\PDUType.cs" />
+    <Compile Include="Enums\PresentationContextReason.cs" />
+    <Compile Include="Enums\Priority.cs" />
+    <Compile Include="Enums\QueryLevel.cs" />
     <Compile Include="Enums\RejectReason.cs" />
     <Compile Include="Enums\RejectResult.cs" />
     <Compile Include="Enums\RejectSource.cs" />
@@ -93,6 +97,7 @@
     <Compile Include="Helpers\AbstractSyntax.cs" />
     <Compile Include="Helpers\ArrayHelper.cs" />
     <Compile Include="Helpers\ByteHelper.cs" />
+    <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\DoubleHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
@@ -108,6 +113,7 @@
     <Compile Include="Interfaces\IIOD.cs" />
     <Compile Include="IO\Data\AbstractBinaryDataReader.cs" />
     <Compile Include="IO\Data\BigEndianReader.cs" />
+    <Compile Include="IO\Data\BigEndianWriter.cs" />
     <Compile Include="IO\Data\DataComposer.cs" />
     <Compile Include="IO\Data\DataPadder.cs" />
     <Compile Include="IO\Data\DataRestriction.cs" />
@@ -145,6 +151,9 @@
     <Compile Include="Modules\FileMetadata.cs" />
     <Compile Include="Modules\Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selection\DICOMSelector.cs" />
+    <Compile Include="Selection\ListExtensions.cs" />
+    <Compile Include="Selection\SequenceSelector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

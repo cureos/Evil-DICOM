@@ -26,10 +26,17 @@ namespace EvilDICOM.Core.IO.Reading
                 throw new ArgumentNullException("objectBytes cannot be null");
             }
 
+            long bytesRead;
+            return ReadObject(objectBytes, syntax, out bytesRead);
+        }
+
+        public static DICOMObject ReadObject(byte[] objectBytes, TransferSyntax syntax, out long bytesRead)
+        {
             List<IDICOMElement> elements;
             using (DICOMBinaryReader dr = new DICOMBinaryReader(objectBytes))
             {
                 elements = DICOMElementReader.ReadAllElements(dr, syntax);
+                bytesRead = dr.StreamPosition;
             }
             return new DICOMObject(elements);
         }

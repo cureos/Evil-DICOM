@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EvilDICOM.Core.IO.Reading;
 using EvilDICOM.Core.Tests.Properties;
 using EvilDICOM.Core.Element;
+using System.IO;
+using EvilDICOM.Core.Helpers;
 
 namespace EvilDICOM.Core.Tests
 {
@@ -49,13 +51,5 @@ namespace EvilDICOM.Core.Tests
             var elemCount = dcm.AllElements.Count;
             Assert.AreEqual(elemCount, 80);
         }
-
-        [TestMethod]
-        public void Read()
-        {
-            var dcm = DICOMFileReader.Read(System.IO.File.OpenRead(@"Data/IM-0001-0001.dcm"));
-            var elemCount = dcm.AllElements.Count;
-        }
-
     }
 }
