@@ -51,6 +51,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DICOMReadTests.cs" />
+    <Compile Include="Integration\TestExplicitBigEndian.cs" />
+    <Compile Include="Integration\TestExplicitLittleEndian.cs" />
+    <Compile Include="Integration\TestImplicitLittleEndian.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DICOMManipulateTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -61,6 +64,14 @@
     <Compile Include="DataTests.cs" />
     <Compile Include="DICOMWriteTests.cs" />
     <Compile Include="TagInfoTests.cs" />
+    <Compile Include="TagTests.cs" />
+    <Compile Include="TestBinaryReader.cs" />
+    <Compile Include="TestByteHelper.cs" />
+    <Compile Include="TestDICOMTagField.cs" />
+    <Compile Include="TestExplicitBigEndian.cs" />
+    <Compile Include="TestExplicitLittleEndian.cs" />
+    <Compile Include="TestImplicitLittleEndian.cs" />
+    <Compile Include="TestVRDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
