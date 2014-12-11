@@ -15,6 +15,7 @@ namespace EvilDICOM.Core.Element
     /// </summary>
     public class Sequence : AbstractElement<DICOMObject>
     {
+        private List<IDICOMElement> _allElements;
         public Sequence()
             : base()
         {
@@ -33,6 +34,26 @@ namespace EvilDICOM.Core.Element
             set
             {
                 base.DataContainer = base.DataContainer ?? new DICOMData<DICOMObject>(); base.DataContainer.MultipicityValue = value;
+            }
+        }
+
+        /// <summary>
+        /// Returns a list of all the elements in all the dicom object in this sequence
+        /// </summary>
+        public List<IDICOMElement> AllElements
+        {
+            get
+            {
+                if(_allElements == null)
+                {
+                    _allElements = new List<IDICOMElement>();
+                    foreach(DICOMObject obj in Items)
+                    {
+                        _allElements.AddRange(obj.AllElements);
+                    }
+                }
+
+                return _allElements;
             }
         }
 

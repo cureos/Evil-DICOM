@@ -5,14 +5,23 @@ using System.Text;
 using EvilDICOM.Core.Interfaces;
 using EvilDICOM.Core.IO.Data;
 using EvilDICOM.Core.Dictionaries;
+using EvilDICOM.Core.Enums;
+
+
+    //TODO find how to set a constant 
+    //; 
 
 namespace EvilDICOM.Core.Element
 {
     /// <summary>
     /// Encapsulates the AttributeTag VR type
     /// </summary>
+    /// 
+    
+    //Constant representing the length of a DICOM Tag
     public class AttributeTag : AbstractElement<Tag>
     {
+
         public AttributeTag() : base() { VR = Enums.VR.AttributeTag; }
 
         public AttributeTag(Tag tag, Tag data)
@@ -27,10 +36,16 @@ namespace EvilDICOM.Core.Element
     /// </summary>
     public class Tag
     {
+
+        public const int groupLength = 4;
+        public const int elementLength = 4;
+
         public Tag(string group, string element)
         {
-            this.Group = DataRestriction.EnforceLengthRestriction(4, group);
-            this.Element = DataRestriction.EnforceLengthRestriction(4, element);
+
+            this.Group = DataRestriction.EnforceLengthRestriction(groupLength, group);
+
+            this.Element = DataRestriction.EnforceLengthRestriction(elementLength, element);
         }
 
         public Tag(string completeID)
@@ -67,6 +82,18 @@ namespace EvilDICOM.Core.Element
         public override string ToString()
         {
             return string.Format("({0},{1}) : {2}", Group, Element, TagDictionary.GetDescription(this));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null)
+            {
+                if (this.CompleteID == ((Tag) obj).CompleteID)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

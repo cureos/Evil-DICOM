@@ -91,6 +91,7 @@ namespace EvilDICOM.Core.Helpers
         public static Tag INSTANCE_CREATION_DATE = new Tag("00080012");
         public static Tag INSTANCE_CREATION_TIME = new Tag("00080013");
         public static Tag INSTANCE_CREATOR_UID = new Tag("00080014");
+        public static Tag INSTANCE_COERCION_DATETIME = new Tag("00080015");
         public static Tag SOPCLASS_UID = new Tag("00080016");
         public static Tag SOPINSTANCE_UID = new Tag("00080018");
         public static Tag RELATED_GENERAL_SOPCLASS_UID = new Tag("0008001A");
@@ -114,6 +115,7 @@ namespace EvilDICOM.Core.Helpers
         public static Tag ACCESSION_NUMBER = new Tag("00080050");
         public static Tag ISSUER_OF_ACCESSION_NUMBER_SEQUENCE = new Tag("00080051");
         public static Tag QUERY_RETRIEVE_LEVEL = new Tag("00080052");
+        public static Tag QUERY_RETRIEVE_VIEW = new Tag("00080053");
         public static Tag RETRIEVE_AETITLE = new Tag("00080054");
         public static Tag INSTANCE_AVAILABILITY = new Tag("00080056");
         public static Tag FAILED_SOPINSTANCE_UIDLIST = new Tag("00080058");
@@ -264,12 +266,14 @@ namespace EvilDICOM.Core.Helpers
         public static Tag PATIENT_INSURANCE_PLAN_CODE_SEQUENCE = new Tag("00100050");
         public static Tag PATIENT_PRIMARY_LANGUAGE_CODE_SEQUENCE = new Tag("00100101");
         public static Tag PATIENT_PRIMARY_LANGUAGE_MODIFIER_CODE_SEQUENCE = new Tag("00100102");
+        public static Tag QUALITY_CONTROL_SUBJECT = new Tag("00100200");
         public static Tag OTHER_PATIENT_IDS = new Tag("00101000");
         public static Tag OTHER_PATIENT_NAMES = new Tag("00101001");
         public static Tag OTHER_PATIENT_IDS_SEQUENCE = new Tag("00101002");
         public static Tag PATIENT_BIRTH_NAME = new Tag("00101005");
         public static Tag PATIENT_AGE = new Tag("00101010");
         public static Tag PATIENT_SIZE = new Tag("00101020");
+        public static Tag PATIENT_SIZE_CODE_SEQUENCE = new Tag("00101021");
         public static Tag PATIENT_WEIGHT = new Tag("00101030");
         public static Tag PATIENT_ADDRESS = new Tag("00101040");
         public static Tag INSURANCE_PLAN_IDENTIFICATION = new Tag("00101050");
@@ -277,6 +281,7 @@ namespace EvilDICOM.Core.Helpers
         public static Tag MILITARY_RANK = new Tag("00101080");
         public static Tag BRANCH_OF_SERVICE = new Tag("00101081");
         public static Tag MEDICAL_RECORD_LOCATOR = new Tag("00101090");
+        public static Tag REFERENCED_PATIENT_PHOTO_SEQUENCE = new Tag("00101100");
         public static Tag MEDICAL_ALERTS = new Tag("00102000");
         public static Tag ALLERGIES = new Tag("00102110");
         public static Tag COUNTRY_OF_RESIDENCE = new Tag("00102150");
@@ -1079,6 +1084,7 @@ namespace EvilDICOM.Core.Helpers
         public static Tag DIMENSION_ORGANIZATION_UID = new Tag("00209164");
         public static Tag DIMENSION_INDEX_POINTER = new Tag("00209165");
         public static Tag FUNCTIONAL_GROUP_POINTER = new Tag("00209167");
+        public static Tag CONVERSION_SOURCE_ATTRIBUTE_SEQUENCE = new Tag("00209172");
         public static Tag DIMENSION_INDEX_PRIVATE_CREATOR = new Tag("00209213");
         public static Tag DIMENSION_ORGANIZATION_SEQUENCE = new Tag("00209221");
         public static Tag DIMENSION_INDEX_SEQUENCE = new Tag("00209222");
@@ -1221,6 +1227,7 @@ namespace EvilDICOM.Core.Helpers
         public static Tag IMAGE_LOCATION = new Tag("00280200");
         public static Tag QUALITY_CONTROL_IMAGE = new Tag("00280300");
         public static Tag BURNED_IN_ANNOTATION = new Tag("00280301");
+        public static Tag LONGITUDINAL_TEMPORAL_INFORMATION_MODIFIED = new Tag("00280303");
         public static Tag TRANSFORM_LABEL = new Tag("00280400");
         public static Tag TRANSFORM_VERSION_NUMBER = new Tag("00280401");
         public static Tag NUMBER_OF_TRANSFORM_STEPS = new Tag("00280402");
@@ -1681,6 +1688,11 @@ namespace EvilDICOM.Core.Helpers
         public static Tag HL7DOCUMENT_TYPE_CODE_SEQUENCE = new Tag("0040E006");
         public static Tag RETRIEVE_URI = new Tag("0040E010");
         public static Tag RETRIEVE_LOCATION_UID = new Tag("0040E011");
+        public static Tag TYPE_OF_INSTANCES = new Tag("0040E020");
+        public static Tag DICOM_RETRIEVAL_SEQUENCE = new Tag("0040E021");
+        public static Tag DICOM_MEDIA_RETRIEVAL_SEQUENCE = new Tag("0040E022");
+        public static Tag WADO_RETRIEVAL_SEQUENCE = new Tag("0040E023");
+        public static Tag XDS_RETRIEVAL_SEQUENCE = new Tag("0040E024");
         public static Tag DOCUMENT_TITLE = new Tag("00420010");
         public static Tag ENCAPSULATED_DOCUMENT = new Tag("00420011");
         public static Tag MIMETYPE_OF_ENCAPSULATED_DOCUMENT = new Tag("00420012");
@@ -3016,6 +3028,7 @@ namespace EvilDICOM.Core.Helpers
         public static Tag SEQUENCE_ITEM = new Tag("FFFEE000");
         public static Tag SEQUENCE_ITEM_DELIMITATION_ITEM = new Tag("FFFEE00D");
         public static Tag SEQUENCE_DELIMITATION_ITEM = new Tag("FFFEE0DD");
+        public static Tag RECOGNIZABLE_VISUAL_FEATURES = new Tag("00280302");
     }
 }
 

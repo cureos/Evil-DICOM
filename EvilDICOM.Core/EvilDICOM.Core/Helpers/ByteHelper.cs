@@ -72,6 +72,28 @@ namespace EvilDICOM.Core.Helpers
             return hexArray;
         }
 
+        public static string StringToHexString(string str)
+        {
+            string hexOutput = "";
+            char[] values = str.ToCharArray();
+            foreach (char letter in values)
+            {
+                // Get the integral value of the character. 
+                int value = Convert.ToInt32(letter);
+                // Convert the decimal value to a hexadecimal value in string form. 
+                string hex = String.Format("{0:X}", value);
+                hexOutput += hex;
+
+            }
+            return hexOutput;
+        }
+        public static byte[] StringToByteArray(string str)
+        {
+           string _str =  ByteHelper.StringToHexString(str);
+           byte[] _hexStr = ByteHelper.HexStringToByteArray(_str);
+           return _hexStr;
+        }
+
         public static bool AreEqual(byte[] bytes, byte[] toCompare)
         {
 	        if (bytes == toCompare) return true;

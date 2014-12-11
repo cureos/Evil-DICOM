@@ -34,6 +34,10 @@ namespace EvilDICOM.Core.IO.Reading
         /// <param name="byteStream">the byte array to be read</param>
         public DICOMBinaryReader(byte[] byteStream)
         {
+            if (byteStream == null)
+            {
+                throw new ArgumentNullException("byte stream cannot be null");
+            }
             _binaryReader = new BinaryReader(new MemoryStream(byteStream),
                 new System.Text.UTF8Encoding());
         }
