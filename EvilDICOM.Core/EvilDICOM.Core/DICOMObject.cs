@@ -13,6 +13,7 @@ using System.Reflection;
 using System.IO;
 using EvilDICOM.Core.IO.Reading;
 using EvilDICOM.Core.IO.Writing;
+using EvilDICOM.Core.Selection;
 
 namespace EvilDICOM.Core
 {
@@ -170,7 +171,7 @@ namespace EvilDICOM.Core
         public List<T> FindAll<T>()
         {
             Type t = typeof(T);
-            return AllElements.Where(el => el is T).Select(el => (T)Convert.ChangeType(el, t, System.Globalization.CultureInfo.InvariantCulture)).ToList();
+            return AllElements.Where(el => el is T).Select(el => (T)Convert.ChangeType(el, t)).ToList();
         }
 
         /// <summary>
@@ -236,7 +237,9 @@ namespace EvilDICOM.Core
         /// <returns>a list of all elements that meet the search criteria</returns>
         public List<IDICOMElement> FindAll(Tag[] descendingTags)
         {
-            return FindAll(descendingTags.Select(t => t.CompleteID).ToArray());
+            List<string> stringList = new List<string>();
+            descendingTags.ToList().ForEach(t => stringList.Add(t.CompleteID));
+            return FindAll(stringList.ToArray());
         }
 
         /// <summary>
@@ -266,8 +269,7 @@ namespace EvilDICOM.Core
         /// <param name="tag">the tag string in the form of GGGGEEEE to be removed</param>
         public void Remove(string tag)
         {
-	        var removables = Elements.Where(el => el.Tag.CompleteID == tag).ToArray();
-	        foreach (var el in removables) Elements.Remove(el);
+            Elements.RemoveAll(el => el.Tag.CompleteID == tag);
             foreach (IDICOMElement elem in Elements)
             {
                 if (elem is Sequence)
@@ -456,19 +458,45 @@ namespace EvilDICOM.Core
         }
         #endregion
 
-        #region IO
-        public static DICOMObject Open(Stream stream)
+        #region GET SELECTOR
+        public DICOMSelector GetSelector()
         {
-            return DICOMFileReader.Read(stream);
+            return new DICOMSelector(this);
         }
+        #endregion
+
+        #region IO
+        /// <summary>
+        /// Reads a DICOM file from a path
+        /// </summary>
+        /// <param name="filePath">the path to the file</param>
+        /// <returns></returns>
+        public static DICOMObject Read(string filePath)
+        {
+            return DICOMFileReader.Read(filePath);
+        }
+        /// <summary>
+        /// Reads a DICOM file from a byte array
+        /// </summary>
+        /// <param name="file">the bytes of the DICOM file</param>
+        /// <returns></returns>
         public static DICOMObject Read(byte[] file)
         {
             return DICOMFileReader.Read(file);
         }
-        public void SaveAs(Stream stream, DICOMWriteSettings settings = null)
+        public void Write(string file, DICOMWriteSettings settings = null)
         {
             settings = settings ?? DICOMWriteSettings.Default();
-            DICOMFileWriter.Write(stream, settings, this);
+            DICOMFileWriter.Write(file, settings, this);
+        }
+        public byte[] GetBytes(DICOMWriteSettings settings = null)
+        {
+            settings = settings ?? DICOMWriteSettings.Default();
+            using (var stream = new MemoryStream())
+            {
+                DICOMFileWriter.Write(stream, settings, this);
+                return stream.ToArray();
+            }
         }
         #endregion
 

@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 using EvilDICOM.Core.Element;
+using EvilDICOM.Core.Helpers;
 
 namespace EvilDICOM.Core.IO.Data
 {
     public class StringDataParser
     {
+        private static readonly string[] dicomTimeFormats = new string[] { "HHmmss.ffffff", "HHmmss.fffff", "HHmmss.ffff", "HHmmss.fff", "HHmmss.ff", "HHmmss.f", "HHmmss" };
+
         public static Age ParseAgeString(string data)
         {
             if (string.IsNullOrEmpty(data))
@@ -115,23 +118,16 @@ namespace EvilDICOM.Core.IO.Data
             {
                 return null;
             }
-            if (data.Length == 13)
+
+            System.DateTime time;
+            var success = System.DateTime.TryParseExact(data, dicomTimeFormats, null, DateTimeStyles.None, out time);
+
+            if (!success)
             {
-                return System.DateTime.ParseExact(data, "HHmmss.ffffff", null);
-            }
-            else if (data.Length == 10)
-            {
-                return System.DateTime.ParseExact(data, "HHmmss.fff", null);
-            }
-            else if (data.Length == 6)
-            {
-                return System.DateTime.ParseExact(data, "HHmmss", null);
-            }
-            else
-            {
-                //throw new Exception("Time format is not DICOM 3.0 Compliant!");
+                EventLogger.Instance.RaiseToLogEvent("Time parse error. Format expected 'HHmmss.ffffff', actual is {0}", data);
                 return null;
             }
+            else { return time; }
         }
     }
 }

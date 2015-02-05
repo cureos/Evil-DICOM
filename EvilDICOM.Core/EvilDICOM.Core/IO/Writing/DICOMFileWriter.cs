@@ -13,9 +13,30 @@ namespace EvilDICOM.Core.IO.Writing
 {
     public class DICOMFileWriter
     {
+        /// <summary>
+        /// Writes DICOM file out as a file of a specified path
+        /// </summary>
+        /// <param name="filePath">the path to which to write the file</param>
+        /// <param name="settings">the write settings</param>
+        /// <param name="toWrite">the object to write</param>
+        public static void Write(string filePath, DICOMWriteSettings settings, DICOMObject toWrite)
+        {
+            using (var fs = new FileStream(filePath, FileMode.Create))
+            {
+                Write(fs, settings, toWrite);
+            }
+        }
+
+        /// <summary>
+        /// Write DICOM file out (bytes) to a specified stream
+        /// </summary>
+        /// <param name="stream">the stream to which to write the file</param>
+        /// <param name="settings">the write settings</param>
+        /// <param name="toWrite">the object to write</param>
         public static void Write(Stream stream, DICOMWriteSettings settings, DICOMObject toWrite)
         {
-            using (DICOMBinaryWriter dw = new DICOMBinaryWriter(stream))
+            settings = settings ?? DICOMWriteSettings.Default();
+            using (var dw = new DICOMBinaryWriter(stream))
             {
                 DICOMPreambleWriter.Write(dw);
                 TransferSyntaxHelper.SetSyntax(toWrite, settings.TransferSyntax);
@@ -23,7 +44,7 @@ namespace EvilDICOM.Core.IO.Writing
             }
         }
 
-        public static void WriteLittleEndian(Stream stream, DICOMObject toWrite)
+        public static void WriteLittleEndian(string filePath, DICOMObject toWrite)
         {
             var settings = DICOMWriteSettings.Default();
             var currentUID = toWrite.FindFirst(TagHelper.TRANSFER_SYNTAX_UID);
@@ -35,7 +56,7 @@ namespace EvilDICOM.Core.IO.Writing
                 settings.TransferSyntax = TransferSyntax.EXPLICIT_VR_LITTLE_ENDIAN;
             }
 
-            Write(stream, settings, toWrite);
+            Write(filePath, settings, toWrite);
         }
-	}
+    }
 }
