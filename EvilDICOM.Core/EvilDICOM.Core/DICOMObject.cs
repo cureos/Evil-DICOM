@@ -171,7 +171,7 @@ namespace EvilDICOM.Core
         public List<T> FindAll<T>()
         {
             Type t = typeof(T);
-            return AllElements.Where(el => el is T).Select(el => (T)Convert.ChangeType(el, t)).ToList();
+            return AllElements.Where(el => el is T).Select(el => (T)Convert.ChangeType(el, t, System.Globalization.CultureInfo.CurrentCulture)).ToList();
         }
 
         /// <summary>
@@ -237,9 +237,8 @@ namespace EvilDICOM.Core
         /// <returns>a list of all elements that meet the search criteria</returns>
         public List<IDICOMElement> FindAll(Tag[] descendingTags)
         {
-            List<string> stringList = new List<string>();
-            descendingTags.ToList().ForEach(t => stringList.Add(t.CompleteID));
-            return FindAll(stringList.ToArray());
+            var stringArray = descendingTags.Select(t => t.CompleteID).ToArray();
+            return FindAll(stringArray);
         }
 
         /// <summary>
@@ -469,11 +468,11 @@ namespace EvilDICOM.Core
         /// <summary>
         /// Reads a DICOM file from a path
         /// </summary>
-        /// <param name="filePath">the path to the file</param>
+        /// <param name="stream">the stream to the file</param>
         /// <returns></returns>
-        public static DICOMObject Read(string filePath)
+        public static DICOMObject Read(Stream stream)
         {
-            return DICOMFileReader.Read(filePath);
+            return DICOMFileReader.Read(stream);
         }
         /// <summary>
         /// Reads a DICOM file from a byte array
@@ -484,10 +483,10 @@ namespace EvilDICOM.Core
         {
             return DICOMFileReader.Read(file);
         }
-        public void Write(string file, DICOMWriteSettings settings = null)
+        public void Write(Stream stream, DICOMWriteSettings settings = null)
         {
             settings = settings ?? DICOMWriteSettings.Default();
-            DICOMFileWriter.Write(file, settings, this);
+            DICOMFileWriter.Write(stream, settings, this);
         }
         public byte[] GetBytes(DICOMWriteSettings settings = null)
         {
