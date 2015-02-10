@@ -1,31 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
+using System.Text;
 
 namespace EvilDICOM.Core.IO.Writing
 {
     public class DICOMBinaryWriter : IDisposable
     {
-        private BinaryWriter _writer;
+        private readonly BinaryWriter _writer;
 
-#if NET
         /// <summary>
-        /// Constructs a new writer from a file path.
+        ///     Constructs a new writer from a file path.
         /// </summary>
         /// <param name="filePath">path to the file to be written</param>
         public DICOMBinaryWriter(string filePath)
         {
             _writer = new BinaryWriter(
                 File.Open(filePath, FileMode.Create),
-                new UTF8Encoding());
+                new ASCIIEncoding());
         }
-#endif
 
-		public DICOMBinaryWriter(Stream stream)
+        public DICOMBinaryWriter(Stream stream)
         {
-            _writer = new BinaryWriter(stream,new UTF8Encoding());
+            _writer = new BinaryWriter(stream, new ASCIIEncoding());
+        }
+
+        public void Dispose()
+        {
+            _writer.Close();
         }
 
         public void Write(byte b)
@@ -45,7 +46,7 @@ namespace EvilDICOM.Core.IO.Writing
 
         public void Write(string chars)
         {
-            char[] asCharArray = chars.ToCharArray();
+            char[] asCharArray = chars.ToCharArray(0, chars.Length);
             Write(asCharArray);
         }
 
@@ -55,11 +56,6 @@ namespace EvilDICOM.Core.IO.Writing
             {
                 Write(0x00);
             }
-        }
-
-        public void Dispose()
-        {
-            _writer.Dispose();
         }
     }
 }
