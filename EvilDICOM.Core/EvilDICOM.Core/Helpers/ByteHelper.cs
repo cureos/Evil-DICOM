@@ -72,6 +72,18 @@ namespace EvilDICOM.Core.Helpers
             return hexArray;
         }
 
+#if PORTABLE
+        public static bool AreEqual(byte[] bytes, byte[] toCompare)
+        {
+            int length;
+            if (bytes == null || toCompare == null || (length = bytes.Length) != toCompare.Length) return false;
+            for (var i = 0; i < length; ++i)
+            {
+                if (bytes[i] != toCompare[i]) return false;
+            }
+            return true;
+        }
+#else
         public static unsafe bool AreEqual(byte[] bytes, byte[] toCompare)
         {
             if (bytes == null || toCompare == null || bytes.Length != toCompare.Length)
@@ -98,5 +110,6 @@ namespace EvilDICOM.Core.Helpers
                 return true;
             }
         }
+#endif
     }
 }
