@@ -24,12 +24,10 @@ namespace EvilDICOM.Core.IO.Reading
         /// <summary>
         ///     Constructs a new reader from a file path.
         /// </summary>
-        /// <param name="filePath">path to the file to be read</param>
-        public DICOMBinaryReader(string filePath)
+        /// <param name="stream">stream to the file to be read</param>
+        public DICOMBinaryReader(Stream stream)
         {
-            _binaryReader = new BinaryReader(
-                new FileStream(filePath, FileMode.Open, FileAccess.Read),
-                new ASCIIEncoding());
+            _binaryReader = new BinaryReader(stream, Encoding.UTF8);
         }
 
         /// <summary>
@@ -39,7 +37,7 @@ namespace EvilDICOM.Core.IO.Reading
         public DICOMBinaryReader(byte[] byteStream)
         {
             _binaryReader = new BinaryReader(new MemoryStream(byteStream),
-                new ASCIIEncoding());
+                Encoding.UTF8);
         }
 
         /// <summary>
@@ -61,7 +59,7 @@ namespace EvilDICOM.Core.IO.Reading
 
         public void Dispose()
         {
-            _binaryReader.Close();
+            _binaryReader.Dispose();
         }
 
         /// <summary>
