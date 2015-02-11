@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using EvilDICOM.Core.Element;
@@ -169,7 +170,7 @@ namespace EvilDICOM.Core
         public List<T> FindAll<T>()
         {
             Type t = typeof (T);
-            return AllElements.Where(el => el is T).Select(el => (T) Convert.ChangeType(el, t)).ToList();
+            return AllElements.Where(el => el is T).Select(el => (T) Convert.ChangeType(el, t, CultureInfo.CurrentCulture)).ToList();
         }
 
         /// <summary>
@@ -244,9 +245,8 @@ namespace EvilDICOM.Core
         /// <returns>a list of all elements that meet the search criteria</returns>
         public List<IDICOMElement> FindAll(Tag[] descendingTags)
         {
-            var stringList = new List<string>();
-            descendingTags.ToList().ForEach(t => stringList.Add(t.CompleteID));
-            return FindAll(stringList.ToArray());
+            var stringArray = descendingTags.Select(t => t.CompleteID).ToArray();
+            return FindAll(stringArray);
         }
 
         /// <summary>
@@ -449,13 +449,13 @@ namespace EvilDICOM.Core
         /// <summary>
         ///     Reads a DICOM file from a path
         /// </summary>
-        /// <param name="filePath">the path to the file</param>
+        /// <param name="stream">the file stream</param>
         /// <param name="trySyntax">the transfer syntax to use in case there is no metadata explicitly included</param>
         /// <returns></returns>
-        public static DICOMObject Read(string filePath,
+        public static DICOMObject Read(Stream stream,
             TransferSyntax trySyntax = TransferSyntax.IMPLICIT_VR_LITTLE_ENDIAN)
         {
-            return DICOMFileReader.Read(filePath, trySyntax);
+            return DICOMFileReader.Read(stream, trySyntax);
         }
 
         /// <summary>
@@ -469,10 +469,10 @@ namespace EvilDICOM.Core
             return DICOMFileReader.Read(file, trySyntax);
         }
 
-        public void Write(string file, DICOMWriteSettings settings = null)
+        public void Write(Stream stream, DICOMWriteSettings settings = null)
         {
             settings = settings ?? DICOMWriteSettings.Default();
-            DICOMFileWriter.Write(file, settings, this);
+            DICOMFileWriter.Write(stream, settings, this);
         }
 
         public byte[] GetBytes(DICOMWriteSettings settings = null)
