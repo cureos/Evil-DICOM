@@ -1,6 +1,6 @@
 ﻿using System;
 using EvilDICOM.Core.Enums;
-    using EvilDICOM.Core.Logging;
+using EvilDICOM.Core.Logging;
 
 namespace EvilDICOM.Core.IO.Data
 {
