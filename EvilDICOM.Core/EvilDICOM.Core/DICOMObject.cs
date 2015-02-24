@@ -245,8 +245,8 @@ namespace EvilDICOM.Core
         /// <returns>a list of all elements that meet the search criteria</returns>
         public List<IDICOMElement> FindAll(Tag[] descendingTags)
         {
-            var stringArray = descendingTags.Select(t => t.CompleteID).ToArray();
-            return FindAll(stringArray);
+            var strings = descendingTags.Select(t => t.CompleteID).ToArray();
+            return FindAll(strings);
         }
 
         /// <summary>
@@ -450,6 +450,7 @@ namespace EvilDICOM.Core
         ///     Reads a DICOM file from a path
         /// </summary>
         /// <param name="stream">the file stream</param>
+        /// <param name="trySyntax">the transfer syntax to use in case there is no metadata explicitly included</param>
         /// <param name="trySyntax">the transfer syntax to use in case there is no metadata explicitly included</param>
         /// <returns></returns>
         public static DICOMObject Read(Stream stream,
