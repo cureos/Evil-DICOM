@@ -1,8 +1,8 @@
 Portable Evil DICOM
 ===================
 
-Copyright (c) 2011-2014 Rex Cardan.
-Portable Class Library adaptation (c) 2012-2014 Anders Gustafsson, Cureos AB.
+Copyright (c) 2011-2015 Rex Cardan.
+Portable Class Library adaptation (c) 2012-2015 Anders Gustafsson, Cureos AB.
 
 A simple to use C# library for reading and manipulating DICOM files. 
 Github is just the distro.
@@ -20,18 +20,19 @@ Content | Link
 Introductory Video | https://www.youtube.com/watch?v=rmYpxxqQ90s
 Examples | http://rexcardan.com/evildicom
 Online API | http://www.rexcardan.com/api/evildicom/index.html
+
 Applicability
 -------------
 
 The _EvilDicom.Core_ Visual Studio solution contains a _Portable Class Library_ project and a unit test project. The PCL library _EvilDICOM.Core_ supports the following targets:
 
-* .NET Framework version 4.5 and higher
+* .NET Framework version 4 and higher
 * Windows 8 and higher (f.k.a. Metro)
 * Silverlight version 5 and higher
 * Windows Phone (Silverlight) version 8 and higher
 * Windows Phone 8.1 and higher
 * Xamarin.Android
-* Xamarin.iOS
+* Xamarin.iOS Classic and Unified APIs
 
 Public API Differences
 ----------------------
