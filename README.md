@@ -10,6 +10,16 @@ Github is just the distro.
 This project is a Portable Class Library adapted fork of Rex Cardan's original [Evil DICOM](https://github.com/rexcardan/Evil-DICOM) library. 
 For general information, online API and Getting Started tutorials, see [here](http://rexcardan.com/evildicom).
 
+The following links will help you get started:
+
+Project website at 
+http://rexcardan.com/evildicom
+
+Content | Link
+------------- | -------------
+Introductory Video | https://www.youtube.com/watch?v=rmYpxxqQ90s
+Examples | http://rexcardan.com/evildicom
+Online API | http://www.rexcardan.com/api/evildicom/index.html
 Applicability
 -------------
 
