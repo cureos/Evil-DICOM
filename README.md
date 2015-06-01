@@ -37,9 +37,10 @@ The _EvilDicom.Core_ Visual Studio solution contains a _Portable Class Library_ 
 Public API Differences
 ----------------------
 
-To meet the requirements of a _Portable Class Library_ project, the PCL library public API differs from Rex Cardan's original _.NET 4_ library as follows:
+To meet the requirements of a _Portable Class Library_ project, the PCL library public API differs from Rex Cardan's original _.NET_ library as follows:
 
-* `DICOMBinaryReader` and `DICOMBinaryWriter` constructors, `DICOMFileReader.Read`, `DICOMFileReader.ReadFileMetadata`, `DICOMFileWriter.WriteLittleEndian`, `DICOMObject.Open` and `DICOMObject.SaveAs` methods takes a `Stream` argument instead of a file path `string`.
+* `DICOMBinaryReader` and `DICOMBinaryWriter` constructors, `DICOMFileReader.Read`, `DICOMFileReader.ReadFileMetadata`, `DICOMFileWriter.WriteLittleEndian`, `DICOMObject.Open`, `DICOMObject.SaveAs`, `DoseMatrix.Load` and `DoseMatrix.Save` methods takes a `Stream` argument instead of a file path `string`.
+* `ConsoleLogger` is excluded
 
 PCL example usage
 -----------------

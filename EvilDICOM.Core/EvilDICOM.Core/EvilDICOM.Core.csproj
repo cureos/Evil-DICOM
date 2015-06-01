@@ -92,7 +92,6 @@
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\SOPClassHelper.cs" />
     <Compile Include="Helpers\Vector3.cs" />
-    <Compile Include="Logging\ConsoleLogger.cs" />
     <Compile Include="Logging\EventLogger.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Helpers\PersonNameHelper.cs" />

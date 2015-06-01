@@ -15,7 +15,7 @@ namespace EvilDICOM.Core.RT
         private DICOMSelector _doseObject;
         public List<double> DoseValues { get; set; }
 
-        public static DoseMatrix Load(string dcmFile)
+        public static DoseMatrix Load(Stream dcmFile)
         {
             return new DoseMatrix(DICOMFileReader.Read(dcmFile));
         }
@@ -31,10 +31,12 @@ namespace EvilDICOM.Core.RT
                 while (binReader.BaseStream.Position < binReader.BaseStream.Length)
                 {
                     var val = binReader.ReadInt32();
+#if !PORTABLE
                     if (val != 0.0)
                     {
                         Console.Write("");
                     }
+#endif
                     DoseValues.Add(scaling * val);
                 }
             }
@@ -187,7 +189,7 @@ namespace EvilDICOM.Core.RT
             return _doseObject.ToDICOMObject();
         }
 
-        public void Save(string path)
+        public void Save(Stream path)
         {
             _doseObject.ToDICOMObject().Write(path);
         }
