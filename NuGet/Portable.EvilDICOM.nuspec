@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Portable.EvilDICOM</id>
+        <version>1.0.6.50807</version>
+        <title>Portable Evil DICOM</title>
+        <authors>Rex Cardan,Ph.D.</authors>
+        <owners>Rex Cardan, Ph.D.; Anders Gustafsson, Cureos AB</owners>
+        <licenseUrl>https://github.com/rexcardan/Evil-DICOM/blob/master/X11.LICENSE</licenseUrl>
+        <projectUrl>https://github.com/cureos/Evil-DICOM</projectUrl>
+        <iconUrl>https://dl.dropboxusercontent.com/u/7527702/evilEye.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A simple to use C# Portable Class Library for reading and manipulating DICOM files. 
+
+Supported platforms .NET 4 and higher, Windows 8 and higher, Windows Phone Silverlight 8 and 8.1, Windows Phone 8.1 and higher, Silverlight 5, Xamarin Android, Xamarin iOS (Classic and Unified API).
+
+Portable Class Library is distributed by Cureos AB and is identical to Rex Cardan's Evil DICOM for .NET except that the file path string in I/O operations is replaced with a System.IO.Stream argument.
+
+For tutorials, API documentation and more, visit http://www.rexcardan.com/evildicom/ .</description>
+        <summary>The wickedest Portable DICOM library in the world.</summary>
+        <copyright>© 2015 Rex Cardan, Ph.D.; Anders Gustafsson, Cureos AB</copyright>
+        <language>en-US</language>
+        <tags>DICOM PCL Xamarin</tags>
+    </metadata>
+    <files>
+        <file src="..\EvilDICOM.Core\EvilDICOM.Core\bin\Release\EvilDICOM.Core.dll" target="lib\portable-net4+sl5+netcore45+wpa81+wp8" />
+        <file src="..\EvilDICOM.Core\EvilDICOM.Core\bin\Release\EvilDICOM.Core.pdb" target="lib\portable-net4+sl5+netcore45+wpa81+wp8" />
+        <file src="..\EvilDICOM.Core\EvilDICOM.Core\bin\Release\EvilDICOM.Core.xml" target="lib\portable-net4+sl5+netcore45+wpa81+wp8" />
+    </files>
+</package>

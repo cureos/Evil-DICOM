@@ -1,6 +1,9 @@
 Portable Evil DICOM
 ===================
 
+[![NuGet](https://img.shields.io/nuget/v/Portable.EvilDICOM.svg)](https://www.nuget.org/packages/Portable.EvilDICOM/)
+[![NuGet](https://img.shields.io/nuget/dt/Portable.EvilDICOM.svg)](https://www.nuget.org/packages/Portable.EvilDICOM/)
+
 Copyright (c) 2011-2015 Rex Cardan.
 Portable Class Library adaptation (c) 2012-2015 Anders Gustafsson, Cureos AB.
 
