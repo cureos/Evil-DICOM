@@ -10,7 +10,7 @@ namespace EvilDICOM.Core.IO.Reading
     /// </summary>
     public class DICOMBinaryReader : IDisposable
     {
-        #region PRIVATE
+        #region PROTECTED
 
         protected BinaryReader _binaryReader;
 
@@ -71,7 +71,13 @@ namespace EvilDICOM.Core.IO.Reading
         {
             var buffer = new byte[count];
             int read = _binaryReader.Read(buffer, 0, count);
-            return buffer.Take(read).ToArray();
+
+            if (read < count)
+            {
+                Array.Resize(ref buffer, read);
+            }
+
+            return buffer;
         }
 
         /// <summary>
@@ -114,7 +120,13 @@ namespace EvilDICOM.Core.IO.Reading
         {
             var buffer = new char[count];
             int read = _binaryReader.Read(buffer, 0, count);
-            return buffer.Take(read).ToArray();
+
+            if (read < count)
+            {
+                Array.Resize(ref buffer, read);
+            }
+
+            return buffer;
         }
 
         /// <summary>
@@ -124,9 +136,7 @@ namespace EvilDICOM.Core.IO.Reading
         /// <returns>the read chars</returns>
         public virtual string ReadString(int length)
         {
-            var buffer = new char[length];
-            int read = _binaryReader.Read(buffer, 0, length);
-            return new string(buffer.Take(read).ToArray());
+            return new string(ReadChars(length));
         }
 
         public int ReadBytes(byte[] buffer, int index, int count)
@@ -136,7 +146,14 @@ namespace EvilDICOM.Core.IO.Reading
 
         public virtual DICOMBinaryReader Skip(int count)
         {
-            ReadBytes(count);
+            if (_binaryReader.BaseStream.CanSeek)
+            {
+                _binaryReader.BaseStream.Seek(count, System.IO.SeekOrigin.Current);
+            }
+            else
+            {
+                ReadBytes(count);
+            }
             return this;
         }
 
