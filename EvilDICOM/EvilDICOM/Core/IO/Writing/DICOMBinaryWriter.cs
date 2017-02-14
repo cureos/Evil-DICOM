@@ -8,7 +8,6 @@ namespace EvilDICOM.Core.IO.Writing
     {
         private readonly BinaryWriter _writer;
 
-#if !PORTABLE
         /// <summary>
         ///     Constructs a new writer from a file path.
         /// </summary>
@@ -19,7 +18,6 @@ namespace EvilDICOM.Core.IO.Writing
                 File.Open(filePath, FileMode.Create),
                 Encoding.UTF8);
         }
-#endif
 
         public DICOMBinaryWriter(Stream stream)
         {

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.IO;
 using EvilDICOM.Core.Element;
 using EvilDICOM.Core.Enums;
 using EvilDICOM.Core.Helpers;
@@ -19,14 +18,14 @@ namespace EvilDICOM.Core.IO.Reading
         /// <summary>
         ///     Reads a DICOM file from a path
         /// </summary>
-        /// <param name="stream">the stream to the DICOM file</param>
+        /// <param name="filePath">the path to the DICOM file</param>
         /// <returns>a DICOM object containing all elements</returns>
-        public static DICOMObject Read(Stream stream, 
+        public static DICOMObject Read(string filePath,
             TransferSyntax trySyntax = TransferSyntax.IMPLICIT_VR_LITTLE_ENDIAN)
         {
             TransferSyntax syntax = trySyntax;
             List<IDICOMElement> elements;
-            using (var dr = new DICOMBinaryReader(stream))
+            using (var dr = new DICOMBinaryReader(filePath))
             {
                 DICOMPreambleReader.Read(dr);
                 List<IDICOMElement> metaElements = ReadFileMetadata(dr, ref syntax);
@@ -81,13 +80,13 @@ namespace EvilDICOM.Core.IO.Reading
         /// <summary>
         ///     Read the meta data from the DICOM object
         /// </summary>
-        /// <param name="stream">the stream to the DICOM file</param>
+        /// <param name="filePath">the path to the DICOM file</param>
         /// <returns>a DICOM object containing the metadata elements</returns>
-        public static DICOMObject ReadFileMetadata(Stream stream)
+        public static DICOMObject ReadFileMetadata(string filePath)
         {
             var syntax = TransferSyntax.IMPLICIT_VR_LITTLE_ENDIAN;
             List<IDICOMElement> metaElements;
-            using (var dr = new DICOMBinaryReader(stream))
+            using (var dr = new DICOMBinaryReader(filePath))
             {
                 DICOMPreambleReader.Read(dr);
                 metaElements = ReadFileMetadata(dr, ref syntax);

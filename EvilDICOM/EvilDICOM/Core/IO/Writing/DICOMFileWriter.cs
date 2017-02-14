@@ -7,7 +7,6 @@ namespace EvilDICOM.Core.IO.Writing
 {
     public class DICOMFileWriter
     {
-#if NET
         /// <summary>
         ///     Writes DICOM file out as a file of a specified path
         /// </summary>
@@ -21,7 +20,7 @@ namespace EvilDICOM.Core.IO.Writing
                 Write(fs, settings, toWrite);
             }
         }
-#endif
+
         /// <summary>
         ///     Write DICOM file out (bytes) to a specified stream
         /// </summary>
@@ -39,7 +38,7 @@ namespace EvilDICOM.Core.IO.Writing
             }
         }
 
-        public static void WriteLittleEndian(Stream stream, DICOMObject toWrite)
+        public static void WriteLittleEndian(string filePath, DICOMObject toWrite)
         {
             DICOMWriteSettings settings = DICOMWriteSettings.Default();
             IDICOMElement currentUID = toWrite.FindFirst(TagHelper.TRANSFER_SYNTAX_UID);
@@ -54,7 +53,7 @@ namespace EvilDICOM.Core.IO.Writing
                 settings.TransferSyntax = TransferSyntax.EXPLICIT_VR_LITTLE_ENDIAN;
             }
 
-            Write(stream, settings, toWrite);
+            Write(filePath, settings, toWrite);
         }
     }
 }
